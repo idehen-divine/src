@@ -1,55 +1,60 @@
 <x-guest-layout>
     <!-- Hero -->
     <section
-        class="hero mt-24 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 shadow-lg w-[90%] rounded-lg max-md:w-[100%] z-0 max-md:rounded-none mx-auto h-[470px] mt-5 px-8 py-4 items-center flex max-md:flex-col justify-between relative"
+        class="hero bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 shadow-lg w-[90%] rounded-lg max-md:w-[100%] z-0 max-md:rounded-none mx-auto h-[470px] mt-5 px-8 py-4 items-center flex max-md:flex-col justify-between relative"
         style="
-            background-image:
+            background-image: url('{{ asset('assets/images/GloryTowerLanding.png') }}');
+            background-size: cover;
+            margin-top: 100px;
             ">
-        <div class="flex flex-col gap-5 items-start justify-center flex-auto">
+        <div class="flex text-gray-900 flex-col gap-5 items-start justify-center flex-auto">
             <h1 class="text-4xl font-bold">Dream Big, Win Bigger</h1>
             <p class="text-xl">
-                Buy Lottery ticket online and change <br />
+                Buy  lucky deep online and change <br />
                 your life forever
             </p>
-            <button class="btn btn-primary rounded-full text-xl font-bold text-gray-100">
+            <a href="{{ route('user.tickets') }}"
+                class="btn bg-orange-500 hover:bg-orange-400 rounded-full text-xl font-bold text-gray-100">
                 Play Now
-            </button>
+            </a>
         </div>
+        @if (helpers()->showJackpot())
+            <!-----Jackpot Box-->
+            <div
+                class="absolute right-5 max-md:right-0 bottom-[-50px] text-gray-800 shadow-lg max-md:bottom-[-140px] h-[200px] bg-white flex flex-col rounded-lg px-10 py-5 items-center justify-center">
+                <h1 class="font-bold text-sm">MEGA JACKPOT</h1>
+                <h1 class="font-bold text-3xl mt-5">N500, 670, 390</h1>
+                <div class="mt-4 flex flex-col justify-center items-center">
+                    <div class="flex">
+                        <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-1">
+                            0
+                        </h1>
+                        <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-4">
+                            8
+                        </h1>
+                        <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-1">
+                            0
+                        </h1>
+                        <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-4">
+                            7
+                        </h1>
+                        <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-1">
+                            2
+                        </h1>
+                        <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-1">
+                            9
+                        </h1>
+                    </div>
 
-        <!-----Jackpot Box-->
-        <div
-            class="absolute right-5 max-md:right-0 bottom-[-50px] text-gray-800 shadow-lg max-md:bottom-[-140px] h-[200px] bg-white flex flex-col rounded-lg px-10 py-5 items-center justify-center">
-            <h1 class="font-bold text-sm">MEGA JACKPOT</h1>
-            <h1 class="font-bold text-3xl mt-5">N500, 670, 390</h1>
-            <div class="mt-4 flex flex-col justify-center items-center">
-                <div class="flex">
-                    <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-1">
-                        0
-                    </h1>
-                    <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-4">
-                        8
-                    </h1>
-                    <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-1">
-                        0
-                    </h1>
-                    <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-4">
-                        7
-                    </h1>
-                    <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-1">
-                        2
-                    </h1>
-                    <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-1">
-                        9
-                    </h1>
-                </div>
-
-                <div class="flex w-[226px] justify-between mt-2 font-bold text-sm">
-                    <p class="ml-4">Days</p>
-                    <p class="ml-4">Hours</p>
-                    <p class="mr-2">Minutes</p>
+                    <div class="flex w-[226px] justify-between mt-2 font-bold text-sm">
+                        <p class="ml-4">Days</p>
+                        <p class="ml-4">Hours</p>
+                        <p class="mr-2">Minutes</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
+
     </section>
 
     <!----Pick Card-->
@@ -67,7 +72,7 @@
             <button class="bg-gray-100 dark:bg-gray-900 rounded-md w-[80px] h-[40px] font-bold text-lg">
                 2:30
             </button>
-            <button class="btn btn-primary w-[140px] h-[40px] whitespace-nowrap">
+            <button class="btn btn-primary text-gray-100 w-[140px] h-[40px] whitespace-nowrap">
                 Play Pick 3 Game
             </button>
         </div>
@@ -83,7 +88,9 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-20 text-gray-800 dark:text-gray-200">
             <div
                 class="flex flex-col shadow-md w-[240px] h-[300px] rounded-md relative border-b border-gray-100 dark:border-gray-700 overflow-hidden">
-                <div class="bg-white dark:bg-gray-800 w-full h-[45%]"></div>
+                <div class="bg-white dark:bg-gray-800 w-full h-[60%]">
+                    <img src="{{ asset('assets/images/invest.jpg') }}" alt="" class="w-full h-full">
+                </div>
 
                 <div class="w-full h-[50%] flex flex-col items-center justify-center">
                     <h1 class="text-black dark:text-white font-bold text-center mt-7">
@@ -94,7 +101,9 @@
             </div>
             <div
                 class="flex flex-col shadow-md w-[240px] h-[300px] rounded-md relative border-b border-gray-100 dark:border-gray-700 overflow-hidden">
-                <div class="bg-white dark:bg-gray-800 w-full h-[45%]"></div>
+                <div class="bg-white dark:bg-gray-800 w-full h-[60%]">
+                    <img src="{{ asset('assets/images/payment.jpg') }}" alt="" class="w-full h-full">
+                </div>
 
                 <div class="w-full h-[50%] flex flex-col items-center justify-center">
                     <h1 class="text-black dark:text-white font-bold text-center mt-7">
@@ -105,7 +114,9 @@
             </div>
             <div
                 class="flex flex-col shadow-md w-[240px] h-[300px] rounded-md relative border-b border-gray-100 dark:border-gray-700 overflow-hidden">
-                <div class="bg-white dark:bg-gray-800 w-full h-[45%]"></div>
+                <div class="bg-white dark:bg-gray-800 w-full h-[60%]">
+                    <img src="{{ asset('assets/images/security.jpg') }}" alt="" class="w-full h-full">
+                </div>
 
                 <div class="w-full h-[50%] flex flex-col items-center justify-center">
                     <h1 class="text-black dark:text-white font-bold text-center mt-7">

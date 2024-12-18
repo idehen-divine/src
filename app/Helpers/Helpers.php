@@ -211,4 +211,9 @@ class Helpers
         $luckyNumbers = collect(range(1, 99))->random($count)->values()->toArray();
         return json_encode($luckyNumbers);
     }
+
+    public function showJackpot()
+    {
+        return false;
+    }
 }

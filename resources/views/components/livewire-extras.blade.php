@@ -13,7 +13,7 @@
 </div>
 
 
-
+@if (isset($confirmingUserDeletion))
 <!-- Delete Confirmation Modal -->
 <x-dialog-modal maxWidth="md" wire:model.live="confirmingUserDeletion">
     <x-slot name="title">
@@ -43,3 +43,5 @@
         </x-danger-button>
     </x-slot>
 </x-dialog-modal>
+@endif
+
