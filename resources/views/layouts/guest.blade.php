@@ -30,7 +30,7 @@
     <x-guest-navbar />
 
     <!-- Page Content -->
-    <main class="py-2 px-4 sm:px-6 lg:px-8 max-w-7xl min-h-[70vh] mx-auto text-gray-800 dark:text-gray-100">
+    <main class="py-2 px-4 sm:px-6 lg:px-8 max-w-7xl min-h-[70vh] mx-auto text-gray-800 dark:text-white">
         {{ $slot }}
     </main>
 
@@ -85,7 +85,7 @@
                                 :value="old('email')" required autocomplete="email" placeholder="Enter Email" />
                         </div>
                         <div class="flex justify-end">
-                            <button type="submit" class="btn bg-orange-500 mt-3 text-gray-100 btn-sm whitespace-nowrap">
+                            <button type="submit" class="btn bg-orange-500 mt-3 text-white btn-sm whitespace-nowrap">
                                 Send
                             </button>
                         </div>

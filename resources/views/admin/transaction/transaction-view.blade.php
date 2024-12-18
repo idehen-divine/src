@@ -47,15 +47,15 @@
                                                 <td class="whitespace-nowrap">
                                                     @if ($transaction->status === 'completed')
                                                         @php
-                                                            $status = 'badge-success text-gray-100';
+                                                            $status = 'badge-success text-white';
                                                         @endphp
                                                     @elseif ($transaction->status === 'failed')
                                                         @php
-                                                            $status = 'bg-red-600 text-gray-100';
+                                                            $status = 'bg-red-600 text-white';
                                                         @endphp
                                                     @else
                                                         @php
-                                                            $status = 'bg-gray-600 text-gray-100';
+                                                            $status = 'bg-gray-600 text-white';
                                                         @endphp
                                                     @endif
                                                     <span class="badge {{ $status }}">
@@ -129,15 +129,15 @@
                                                 <td class="whitespace-nowrap">
                                                     @if ($transaction->status === 'completed')
                                                         @php
-                                                            $status = 'badge-success text-gray-100';
+                                                            $status = 'badge-success text-white';
                                                         @endphp
                                                     @elseif ($transaction->status === 'failed')
                                                         @php
-                                                            $status = 'bg-red-600 text-gray-100';
+                                                            $status = 'bg-red-600 text-white';
                                                         @endphp
                                                     @else
                                                         @php
-                                                            $status = 'bg-gray-600 text-gray-100';
+                                                            $status = 'bg-gray-600 text-white';
                                                         @endphp
                                                     @endif
                                                     <span class="badge {{ $status }}">

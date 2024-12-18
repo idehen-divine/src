@@ -39,7 +39,7 @@
 
                 <div class="flex items-center justify-between mt-4 z-10">
                     <a href="{{ route('password.request') }}"
-                        class="underline text-sm text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 me-5">
+                        class="underline text-sm text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 me-5">
                         Forgot password?
                     </a>
                     <button type="submit"
@@ -50,7 +50,7 @@
 
             <div class="flex flex-col items-center justify-between mt-4 z-10">
                 <a href="{{ route('register') }}"
-                    class="underline z-10 text-sm text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 mt-2">
+                    class="underline z-10 text-sm text-gray-600 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 mt-2">
                     Don't Have an Account? Register now</a>
             </div>
 

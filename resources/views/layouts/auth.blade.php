@@ -19,7 +19,7 @@
     @livewireStyles
 </head>
 
-<body class="w-[100vw] h-[100vh] items-center justify-center flex font-sans text-gray-900 dark:text-gray-100 bg-gray-100 dark:bg-gray-900 antialiased">
+<body class="w-[100vw] h-[100vh] items-center justify-center flex font-sans text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-900 antialiased">
         {{-- <select data-choose-theme class="select select-bordered">
             <option value="light">Light</option>
             <option value="dark">Dark</option>
