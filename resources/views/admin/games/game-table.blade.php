@@ -279,7 +279,7 @@
                     wire:click="toggleCreateModal" wire:target="gamePhoto,store" wire:loading.attr="disabled">
                     {{ __('Cancel') }}
                 </button>
-                <button class="btn btn-primary btn-sm uppercase text-xs text-gray-800 dark:text-gray-200"
+                <button class="btn bg-orange-500 hover:bg-orange-400 border-none btn-sm uppercase text-xs text-gray-200"
                     wire:click="store" wire:target="gamePhoto,store" wire:loading.attr="disabled">
                     {{ __('Create') }}
                 </button>

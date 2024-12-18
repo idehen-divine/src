@@ -22,6 +22,7 @@ class Game extends Model
         'price',
         'reward',
         'photo_path',
+        'winning_numbers',
     ];
 
     public function scopeSearch($query, $search)
