@@ -14,7 +14,7 @@
                 your life forever
             </p>
             <a href="{{ route('user.tickets') }}"
-                class="btn bg-orange-500 hover:bg-orange-400 rounded-full text-xl font-bold text-gray-100">
+                class="btn bg-orange-500 hover:bg-orange-400 border-none rounded-full text-xl font-bold text-gray-100">
                 Play Now
             </a>
         </div>
