@@ -60,7 +60,7 @@
                                     <td class="whitespace-nowrap">{{ strtoupper($game->game_id) }}</td>
                                     <td class="whitespace-nowrap">{{ $game->price }}</td>
                                     <td class="whitespace-nowrap">{{ $game->reward }}</td>
-                                    <td class="whitespace-nowrap">{{ implode(', ', json_decode($tickets->numbers, true)) }}</td>
+                                    <td class="whitespace-nowrap">{{ implode(', ', json_decode($game->winning_numbers, true)) }}</td>
                                     <td class="whitespace-nowrap">
                                         {{ ucwords(str_replace('_', ' ', ucwords($game->recurrence))) }}</td>
                                     <td class="whitespace-nowrap">
