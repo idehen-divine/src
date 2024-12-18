@@ -25,7 +25,7 @@
     </style>
 </head>
 
-<body class="bg-gray-100 dark:bg-gray-900 max-w-[100vw] font-sans antialiased">
+<body class="bg-white dark:bg-gray-900 max-w-[100vw] font-sans antialiased">
     <!-- Navbar-->
     <x-guest-navbar />
 
