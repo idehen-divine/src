@@ -53,6 +53,7 @@ class GameTable extends Component
             'start_date' => $this->start_date,
             'draw_time' => $this->draw_time,
             'recurrence' => strtolower($this->recurrence),
+            'winning_number' => helpers()->generateLuckyNumbers(5),
         ]);
 
         if ($this->gamePhoto) {

@@ -55,7 +55,8 @@
                             <a href="{{ route('user.wallet') }}"
                                 class="flex items-center gap-2 px-4 py-2 c bg-red-600 hover:bg-red-700 rounded-lg shadow-lg">
                                 <i class='bx bx-wallet text-xl'></i>
-                                <span class="font-semibold" wire:poll.visable.5s>{{ settings()->getValue('app_currency_logo', '$') . $balance }}</span>
+                                <span class="font-semibold"
+                                    wire:poll.visable.5s>{{ settings()->getValue('app_currency_logo', '$') . $balance }}</span>
                             </a>
                         </div>
                     </div>

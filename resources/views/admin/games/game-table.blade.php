@@ -13,7 +13,7 @@
                             placeholder="Search" />
                         <i class="bx bx-search text-base opacity-75"></i>
                     </label>
-                    <button type="button" class="btn btn-sm btn-primary text-gray-800 dark:text-gray-200"
+                    <button type="button" class="btn btn-sm bg-orange-500 hover:bg-orange-400 border-none text-gray-200"
                         wire:click="toggleCreateModal">
                         <span class="hidden sm:block">
                             Create
@@ -34,6 +34,7 @@
                             <th>Game ID</th>
                             <th>Price Per Ticket</th>
                             <th>Reward</th>
+                            <th>Lucky Numbers</th>
                             <th>Recurrence</th>
                             <th>Start Date</th>
                             <th>Draw Time</th>
@@ -59,6 +60,7 @@
                                     <td class="whitespace-nowrap">{{ strtoupper($game->game_id) }}</td>
                                     <td class="whitespace-nowrap">{{ $game->price }}</td>
                                     <td class="whitespace-nowrap">{{ $game->reward }}</td>
+                                    <td class="whitespace-nowrap">{{ implode(', ', json_decode($tickets->numbers, true)) }}</td>
                                     <td class="whitespace-nowrap">
                                         {{ ucwords(str_replace('_', ' ', ucwords($game->recurrence))) }}</td>
                                     <td class="whitespace-nowrap">

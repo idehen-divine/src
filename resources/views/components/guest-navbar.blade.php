@@ -10,45 +10,56 @@
                 </a>
             </h1>
             <ul class="flex gap-10 items-center max-md:hidden">
-                <li class="{{ Route::is('home') ? 'active':'' }}"><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('user.tickets') }}">Play Now</a></li>
-                <li class="{{ Route::is('results') ? 'active':'' }}"><a href="{{ route('results') }}">Results</a></li>
+                <li class="{{ Route::is('home') ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
+                @if (auth()->user())
+                    @if (helpers()->isUser())
+                        <li><a href="{{ route('user.tickets') }}">Play Now</a></li>
+                    @endif
+                @else
+                    <li><a href="{{ route('user.tickets') }}">Play Now</a></li>
+                @endif
+                <li class="{{ Route::is('results') ? 'active' : '' }}"><a href="{{ route('results') }}">Results</a>
+                </li>
                 {{-- <li>FAQs</li> --}}
-                <li class="{{ Route::is('contact-us') ? 'active':'' }}"><a href="{{ route('contact-us') }}">Contact Us</a></li>
+                <li class="{{ Route::is('contact-us') ? 'active' : '' }}"><a href="{{ route('contact-us') }}">Contact
+                        Us</a></li>
             </ul>
 
             <div :class="{ 'block': open, 'hidden': !open }"
                 class="w-3/4 flex-col right-0 fixed bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 p-10 text-lg z-10 font-bold ease-in-out top-16 gap-10 items-start">
                 <ul>
-                    <li class="{{ Route::is('home') ? 'active':'' }}"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="{{ Route::is('home') ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('user.tickets') }}">Play Now</a></li>
-                    <li class="{{ Route::is('results') ? 'active':'' }}"><a href="{{ route('results') }}">Results</a></li>
+                    <li class="{{ Route::is('results') ? 'active' : '' }}"><a
+                            href="{{ route('results') }}">Results</a>
+                    </li>
                     {{-- <li>FAQs</li> --}}
-                    <li class="{{ Route::is('contact-us') ? 'active':'' }}"><a href="{{ route('contact-us') }}">Contact Us</a></li>
+                    <li class="{{ Route::is('contact-us') ? 'active' : '' }}"><a
+                            href="{{ route('contact-us') }}">Contact Us</a></li>
                 </ul>
 
                 <div class="button flex gap-4 mt-4">
                     @if (auth()->user())
-                    <a href="{{ route('dashboard') }}">
-                        <button
-                            class="w-[90px] btn h-7 text-gray-800 dark:text-gray-100 border border-gray-800 dark:border-gray-100 hover:border-none bg-white dark:bg-transparent hover:dark:bg-gray-900 hover:bg-gray-100 rounded-md text-bold">
-                            Dashboard
-                        </button>
-                    </a>
-                @else
-                    <a href="{{ route('register') }}">
-                        <button
-                            class="w-[90px] btn h-7 text-gray-800 dark:text-gray-100 border border-gray-800 dark:border-gray-100 hover:border-none bg-white dark:bg-transparent hover:dark:bg-gray-900 hover:bg-gray-100 rounded-md text-bold">
-                            Register
-                        </button>
-                    </a>
-                    <a href="{{ route('login') }}">
-                        <button
-                            class="w-[90px] btn h-7 text-gray-800 dark:text-gray-100 bg-gray-100 dark:bg-gray-900 hover:bg-transparent hover:border hover:border-gray-800 hover:dark:border-gray-100 rounded-md text-bold">
-                            Login
-                        </button>
-                    </a>
-                @endif
+                        <a href="{{ route('dashboard') }}">
+                            <button
+                                class="w-[90px] btn h-7 text-gray-800 dark:text-gray-100 border border-gray-800 dark:border-gray-100 hover:border-none bg-white dark:bg-transparent hover:dark:bg-gray-900 hover:bg-gray-100 rounded-md text-bold">
+                                Dashboard
+                            </button>
+                        </a>
+                    @else
+                        <a href="{{ route('register') }}">
+                            <button
+                                class="w-[90px] btn h-7 text-gray-800 dark:text-gray-100 border border-gray-800 dark:border-gray-100 hover:border-none bg-white dark:bg-transparent hover:dark:bg-gray-900 hover:bg-gray-100 rounded-md text-bold">
+                                Register
+                            </button>
+                        </a>
+                        <a href="{{ route('login') }}">
+                            <button
+                                class="w-[90px] btn h-7 text-gray-800 dark:text-gray-100 bg-gray-100 dark:bg-gray-900 hover:bg-transparent hover:border hover:border-gray-800 hover:dark:border-gray-100 rounded-md text-bold">
+                                Login
+                            </button>
+                        </a>
+                    @endif
                 </div>
             </div>
 

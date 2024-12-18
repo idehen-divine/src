@@ -11,20 +11,10 @@ class GuestController extends Controller
         return view('guest.home-page');
     }
 
-    public function playNowPage()
-    {
-        //
-    }
-
     public function resultPage()
     {
         return view('guest.results.index');
     }
-
-    public function faqsPage()
-    {
-        //
-    }   
 
     public function contactUsPage()
     {
