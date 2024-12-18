@@ -85,7 +85,7 @@
                                 :value="old('email')" required autocomplete="email" placeholder="Enter Email" />
                         </div>
                         <div class="flex justify-end">
-                            <button type="submit" class="btn mt-3 text-gray-100 btn-sm btn-primary whitespace-nowrap">
+                            <button type="submit" class="btn bg-orange-500 mt-3 text-gray-100 btn-sm whitespace-nowrap">
                                 Send
                             </button>
                         </div>

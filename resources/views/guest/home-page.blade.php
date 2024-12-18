@@ -72,7 +72,7 @@
             <button class="bg-gray-100 dark:bg-gray-900 rounded-md w-[80px] h-[40px] font-bold text-lg">
                 2:30
             </button>
-            <button class="btn btn-primary text-gray-100 w-[140px] h-[40px] whitespace-nowrap">
+            <button class="btn bg-orange-500 text-gray-100 w-[140px] h-[40px] whitespace-nowrap">
                 Play Pick 3 Game
             </button>
         </div>

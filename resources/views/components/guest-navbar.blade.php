@@ -29,26 +29,26 @@
 
                 <div class="button flex gap-4 mt-4">
                     @if (auth()->user())
-                        <a href="{{ route('dashboard') }}">
-                            <button
-                                class="w-[100px] btn h-7 text-gray-800 dark:text-gray-100 border border-gray-800 dark:border-gray-100 bg-gray-800 hover:bg-gray-900 rounded-md text-bold">
-                                Dashboard
-                            </button>
-                        </a>
-                    @else
-                        <a href="{{ route('register') }}">
-                            <button
-                                class="w-[100px] btn h-7 text-gray-800 dark:text-gray-100 border border-gray-800 dark:border-gray-100 bg-gray-800 hover:bg-gray-900 rounded-md text-bold">
-                                Register
-                            </button>
-                        </a>
-                        <a href="{{ route('login') }}">
-                            <button
-                                class="w-[100px] btn h-7 text-gray-800 dark:text-gray-100 bg-gray-900 hover:bg-transparent border hover:border-gray-800 hover:dark:border-gray-100 rounded-md text-bold">
-                                Login
-                            </button>
-                        </a>
-                    @endif
+                    <a href="{{ route('dashboard') }}">
+                        <button
+                            class="w-[90px] btn h-7 text-gray-800 dark:text-gray-100 border border-gray-800 dark:border-gray-100 hover:border-none bg-white dark:bg-transparent hover:dark:bg-gray-900 hover:bg-gray-100 rounded-md text-bold">
+                            Dashboard
+                        </button>
+                    </a>
+                @else
+                    <a href="{{ route('register') }}">
+                        <button
+                            class="w-[90px] btn h-7 text-gray-800 dark:text-gray-100 border border-gray-800 dark:border-gray-100 hover:border-none bg-white dark:bg-transparent hover:dark:bg-gray-900 hover:bg-gray-100 rounded-md text-bold">
+                            Register
+                        </button>
+                    </a>
+                    <a href="{{ route('login') }}">
+                        <button
+                            class="w-[90px] btn h-7 text-gray-800 dark:text-gray-100 bg-gray-100 dark:bg-gray-900 hover:bg-transparent hover:border hover:border-gray-800 hover:dark:border-gray-100 rounded-md text-bold">
+                            Login
+                        </button>
+                    </a>
+                @endif
                 </div>
             </div>
 
