@@ -72,9 +72,9 @@
                                     <td>{{ $game->description ?? '' }}</td>
                                     <td class="whitespace-nowrap">
                                         @if (!$game->is_active)
-                                            <div class="badge badge-error">Inactive</div>
+                                            <div class="badge badge-error text-white">Inactive</div>
                                         @else
-                                            <div class="badge badge-success">Active</div>
+                                            <div class="badge badge-success text-white">Active</div>
                                         @endif
                                     </td>
                                     <td class="whitespace-nowrap">

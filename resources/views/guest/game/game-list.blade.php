@@ -18,7 +18,7 @@
                         </div>
                         <!-- Button -->
                         <a href="{{ route('user.tickets') }}"
-                            class="btn btn-primary btn-sm md:btn-md rounded-full text-gray-200 font-bold md:text-xl px-4 py-2 mt-5">
+                            class="btn bg-orange-500 hover:bg-orange-400 border-none btn-sm md:btn-md rounded-full text-gray-200 font-bold md:text-xl px-4 py-2 mt-5">
                             Play {{ ucwords($game->name) }}
                         </a>
                     </div>
