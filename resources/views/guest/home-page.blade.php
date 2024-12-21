@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout title="Home Page">
     <!-- Hero -->
     <section
         class="hero bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 shadow-lg w-[90%] rounded-lg max-md:w-[100%] z-0 max-md:rounded-none mx-auto h-[470px] mt-5 px-8 py-4 items-center flex max-md:flex-col justify-between relative"
@@ -13,73 +13,16 @@
                 Buy  lucky deep online and change <br />
                 your life forever
             </p>
-            <a href="{{ route('user.tickets') }}"
+            <a href=""
                 class="btn bg-orange-500 hover:bg-orange-400 border-none rounded-full text-xl font-bold text-white">
-                Play Now
+                Invest Now
             </a>
         </div>
-        @if (helpers()->showJackpot())
-            <!-----Jackpot Box-->
-            <div
-                class="absolute right-5 max-md:right-0 bottom-[-50px] text-gray-800 shadow-lg max-md:bottom-[-140px] h-[200px] bg-white flex flex-col rounded-lg px-10 py-5 items-center justify-center">
-                <h1 class="font-bold text-sm">MEGA JACKPOT</h1>
-                <h1 class="font-bold text-3xl mt-5">N500, 670, 390</h1>
-                <div class="mt-4 flex flex-col justify-center items-center">
-                    <div class="flex">
-                        <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-1">
-                            0
-                        </h1>
-                        <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-4">
-                            8
-                        </h1>
-                        <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-1">
-                            0
-                        </h1>
-                        <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-4">
-                            7
-                        </h1>
-                        <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-1">
-                            2
-                        </h1>
-                        <h1 class="bg-gray-300 px-2 rounded-sm py-1 font-bold text-2xl mr-1">
-                            9
-                        </h1>
-                    </div>
-
-                    <div class="flex w-[226px] justify-between mt-2 font-bold text-sm">
-                        <p class="ml-4">Days</p>
-                        <p class="ml-4">Hours</p>
-                        <p class="mr-2">Minutes</p>
-                    </div>
-                </div>
-            </div>
-        @endif
-
     </section>
 
-    <!----Pick Card-->
-    <section
-        class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 max-md:flex-col shadow-lg w-[99%] gap-5 py-4 px-4 max-md:px-0 rounded-lg max-md:w-[100%] z-0 max-md:rounded-none mx-auto mt-20 max-md:mt-40 flex items-center justify-between">
-        <div class="flex gap-5 items-center h-full px-3 w-[50%] max-md:w-full max-md:mt-7">
-            <div class="w-[100px] h-[100px] bg-gray-100 dark:bg-gray-900 rounded-md"></div>
-            <div class="flex flex-col items-start justify-center">
-                <h1 class="font-extrabold text-lg">Play Pick 3 Game</h1>
-                <p class="text-sm font-sans">Draw every 4 hours</p>
-            </div>
-        </div>
-        <div
-            class="flex items-center justify-end max-md:justify-center pr-10 h-full w-[50%] gap-5 max-md:mb-5 max-md:w-full max-md:mt-5">
-            <button class="bg-gray-100 dark:bg-gray-900 rounded-md w-[80px] h-[40px] font-bold text-lg">
-                2:30
-            </button>
-            <button class="btn bg-orange-500 text-white w-[140px] h-[40px] whitespace-nowrap">
-                Play Pick 3 Game
-            </button>
-        </div>
-    </section>
+    <section>
 
-    <!-- Cards -->
-    <livewire:guests.game.game-list lazy />
+    </section>
 
     <!--------trio card------>
     <section

@@ -27,6 +27,11 @@ class SettingSeeder extends Seeder
                 'description' => 'A description of the app'
             ],
             [
+                'name' => 'app_key_words',
+                'value' => 'app, key, words',
+                'description' => 'The key words of the app'
+            ],
+            [
                 'name' => 'app_email',
                 'value' => 'admin@example.com',
                 'description' => 'The email of the app'
@@ -43,7 +48,7 @@ class SettingSeeder extends Seeder
             ],
             [
                 'name' => 'app_timezone',
-                'value' => 'America/New_York',
+                'value' => 'Africa/Lagos',
                 'description' => 'The timezone of the app'
             ],
             [
@@ -55,21 +60,6 @@ class SettingSeeder extends Seeder
                 'name' => 'app_currency_logo',
                 'value' => '₦',
                 'description' => 'The currency logo of the app'
-            ],
-            [
-                'name' => 'app_locale',
-                'value' => 'en',
-                'description' => 'The locale of the app'
-            ],
-            [
-                'name' => 'app_timezone',
-                'value' => 'Africa/Lagos',
-                'description' => 'The timezone of the app'
-            ],
-            [
-                'name' => 'app_twitter',
-                'value' => '',
-                'description' => 'The Twitter username of the app'
             ],
             [
                 'name' => 'app_instagram',
@@ -85,16 +75,6 @@ class SettingSeeder extends Seeder
                 'name' => 'app_youtube',
                 'value' => '',
                 'description' => 'The YouTube username of the app'
-            ],
-            [
-                'name' => 'app_theme',
-                'value' => 'light',
-                'description' => 'The theme of the app'
-            ],
-            [
-                'name' => 'app_recaptcha',
-                'value' => '',
-                'description' => 'The reCAPTCHA code of the app'
             ],
         ]);
     }

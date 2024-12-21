@@ -197,7 +197,7 @@
             </x-slot>
 
             <x-slot name="footer">
-                <x-secondary-button wire:click="$toggle('showModal')" wire:loading.attr="disabled">
+                <x-secondary-button wire:click="$toggle('showWalletModal')" wire:loading.attr="disabled">
                     {{ __('Cancel') }}
                 </x-secondary-button>
                 <button class="btn btn-primary btn-sm uppercase text-xs text-gray-800 dark:text-gray-200"

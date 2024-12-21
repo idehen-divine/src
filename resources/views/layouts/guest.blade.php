@@ -2,11 +2,23 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ ucwords(settings()->getValue('app_name', config('app.name'))) }}{{ ' || ' . ($title ?? '') }}</title>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <meta name="keywords" content="{{ settings()->getValue('app_keywords', config('app.name')) }}" />
+    <meta name="description" content="{{ settings()->getValue('app_description', config('app.name')) }}" />
+    <meta name="twitter:image" content="brands/twitter.png" />
+    <meta name="twitter:image:alt" content="{{ ucwords(settings()->getValue('app_name', config('app.name'))) }}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ ucwords(settings()->getValue('app_name', config('app.name'))) }}" />
+    <meta name="twitter:description" content="{{ settings()->getValue('app_description', config('app.name')) }}" />
+    <meta property="og:title" content="{{ ucwords(settings()->getValue('app_name', config('app.name'))) }}" />
+    <meta property="og:site_name" content="{{ ucwords(settings()->getValue('app_name', config('app.name'))) }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="{{ settings()->getValue('app_description', config('app.name')) }}" />
+    <meta property="og:image" content="brands/twitter.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

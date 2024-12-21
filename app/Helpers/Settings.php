@@ -11,7 +11,7 @@ class Settings
  * This class provides helper methods for getting app settings and constants.
  */
 {
-    public function getValue($name, $default = null)
+    static public function getValue($name, $default = null)
     {
         $value = Setting::where('name', $name)->first();
         if (!$value && !$default) {
@@ -22,7 +22,7 @@ class Settings
         return $value->value;
     }
 
-    public function getId($name, $default = null)
+    static public function getId($name, $default = null)
     {
         $value = Setting::where('name', $name)->first();
         if (!$value && !$default) {
@@ -34,7 +34,7 @@ class Settings
     }
 
 
-    public function getDescription($name, $default = null)
+    static public function getDescription($name, $default = null)
     {
         $value = Setting::where('name', $name)->first();
         if (!$value && !$default) {
@@ -43,5 +43,16 @@ class Settings
             return $default;
         }
         return $value->description;
+    }
+
+    static public function setValue($name, $value)
+    {
+        $setting = Setting::where('name', $name)->first();
+        if (!$setting) {
+            $setting = new Setting();
+            $setting->name = $name;
+        }
+        $setting->value = $value;
+        $setting->save();
     }
 }

@@ -19,13 +19,7 @@ return new class extends Migration
             $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });
-
-        Schema::create('countries', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
-        });
-
+        
         Schema::create('nationalities', function (Blueprint $table) {
             $table->id();
             $table->string('name');

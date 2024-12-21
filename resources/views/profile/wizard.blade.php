@@ -91,17 +91,11 @@
                         placeholder="Phone Number" name="phone" minlength="10" id="phone" maxlength="10"
                         wire:model="phone_number" required />
                 </label>
-
-                <label class="input input-bordered flex items-center gap-2">
-                    <i class="bx bxs-location-plus text-gray-700 dark:text-gray-300 opacity-75"
-                        style="font-size: 1.5rem"></i>
-                    <input type="text" class="grow" placeholder="Address" name="address" id="address" required
-                        wire:model="address" />
-                </label>
             </div>
 
             <!-- Step 4 -->
             <div class="relative z-10" x-show="step === 4">
+                <p>Nationality</p>
                 <select class="select select-bordered w-full mb-3" name="nationality" wire:model="nationality">
                     <option value="">-- Nationalities --</option>
                     @unless ($nationalities === null || $nationalities->isEmpty())
@@ -111,14 +105,7 @@
                     @endunless
                 </select>
 
-                <select class="select select-bordered w-full mb-3" name="country" wire:model="country">
-                    <option value="">-- Countries --</option>
-                    @unless ($countries === null || $countries->isEmpty())
-                        @foreach ($countries as $country)
-                            <option value="{{ $country->id }}">{{ strtoupper($country->name) }}</option>
-                        @endforeach
-                    @endunless
-                </select>
+                <p>Residential Address</p>
 
                 <select class="select select-bordered w-full mb-3" name="state" wire:model.live="state">
                     <option value="">-- States --</option>
@@ -137,6 +124,13 @@
                         @endforeach
                     @endunless
                 </select>
+
+                <label class="input input-bordered flex items-center gap-2">
+                    <i class="bx bxs-location-plus text-gray-700 dark:text-gray-300 opacity-75"
+                        style="font-size: 1.5rem"></i>
+                    <input type="text" class="grow" placeholder="Address" name="address" id="address" required
+                        wire:model="address" />
+                </label>
             </div>
 
             <!-- Navigation Buttons -->

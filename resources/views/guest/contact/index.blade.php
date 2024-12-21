@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout title="Contact Us">
     <section class="bg-white dark:bg-gray-900">
         <div class="container mt-20 px-6 py-12 mx-auto">
             <div>

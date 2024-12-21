@@ -18,8 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(GuestController::class)->group(function () {
     Route::get('/', 'homePage')->name('home');
-    Route::get('/results', 'resultPage')->name('results');
+    Route::get('/about-us', 'aboutUsPage')->name('about-us');
     Route::get('/contact-us', 'contactUsPage')->name('contact-us');
+    Route::get('faqs', 'faqsPage')->name('faqs');
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'forceVerification'])->group(function () {
@@ -34,18 +35,18 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'forceVerif
 
         Route::controller(AdminController::class)->middleware('admin')->group(function () {
             Route::get('/users', 'getAllUsers')->name('users');
-            Route::get('/games', 'getAllGames')->name('games');
-            Route::get('/game/{game}', 'getAllTickets')->name('game');
-            Route::get('/ticket/{ticket}', 'getTicket')->name('ticket');
+            Route::get('/user/{id}', 'getUser')->name('user');
             Route::get('/transaction', 'transaction')->name('transaction');
-            Route::get('/winners', 'winners')->name('winners');
+            Route::get('/profile', 'profile')->name('profile');
+            Route::get('/settings', 'settings')->name('settings');
         });
 
         Route::controller(UserController::class)->middleware('user')->group(function () {
-            Route::get('/tickets', 'getAllTickets')->name('user.tickets');
-            Route::get('/myticket', 'getUserTickets')->name('user.myticket');
-            Route::get('/history', 'getUserHistory')->name('user.history');
-            Route::get('/wallet', 'getUserWallet')->name('user.wallet');
+
         });
     });
+
+    // Route::get('/user/profile', function () {
+    //     return abort(404);
+    // });
 });

@@ -20,29 +20,14 @@
                         <x-nav-link href="{{ route('users') }}" :active="$activePage === 'users'">
                             {{ __('Users') }}
                         </x-nav-link>
-                        <x-nav-link href="{{ route('games') }}" :active="$activePage === 'games'">
-                            {{ __('Games') }}
-                        </x-nav-link>
                         <x-nav-link href="{{ route('transaction') }}" :active="$activePage === 'transaction'">
                             {{ __('Transactions') }}
                         </x-nav-link>
-                        <x-nav-link href="{{ route('winners') }}" :active="$activePage === 'winners'">
-                            {{ __('Winners') }}
+                        <x-nav-link href="{{ route('settings') }}" :active="$activePage === 'settings'">
+                            {{ __('Settings') }}
                         </x-nav-link>
                     @elseif (helpers()->isUser())
-                        <x-nav-link href="{{ route('user.tickets') }}" :active="$activePage === 'user.tickets'">
-                            {{ __('Tickets') }}
-                        </x-nav-link>
-                        <x-nav-link href="{{ route('user.myticket') }}" :active="$activePage === 'user.myticket'">
-                            {{ __('My Tickets') }}
-                        </x-nav-link>
-                        <x-nav-link href="{{ route('user.history') }}" :active="$activePage === 'user.history'">
-                            {{ __('History') }}
-                        </x-nav-link>
                     @endif
-                    <x-nav-link href="{{ route('results') }}" :active="$activePage === 'results'">
-                        {{ __('Results') }}
-                    </x-nav-link>
                 </div>
             </div>
 
@@ -163,29 +148,11 @@
                 <x-responsive-nav-link href="{{ route('users') }}" :active="$activePage === 'users'">
                     {{ __('Users') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('games') }}" :active="$activePage === 'games'">
-                    {{ __('Games') }}
-                </x-responsive-nav-link>
                 <x-responsive-nav-link href="{{ route('transaction') }}" :active="$activePage === 'transaction'">
                     {{ __('Transactions') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('winners') }}" :active="$activePage === 'winners'">
-                    {{ __('Winners') }}
-                </x-responsive-nav-link>
             @elseif (helpers()->isUser())
-                <x-responsive-nav-link href="{{ route('user.tickets') }}" :active="$activePage === 'user.tickets'">
-                    {{ __('Tickets') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('user.myticket') }}" :active="$activePage === 'user.myticket'">
-                    {{ __('My Tickets') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('user.history') }}" :active="$activePage === 'user.history'">
-                    {{ __('History') }}
-                </x-responsive-nav-link>
             @endif
-            <x-responsive-nav-link href="{{ route('results') }}" :active="$activePage === 'results'">
-                {{ __('Results') }}
-            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

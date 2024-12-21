@@ -31,16 +31,18 @@ class User extends Authenticatable
         'address',
         'lgas_id',
         'states_id',
-        'countries_id',
         'nationalities_id',
         'gender',
         'dob',
         'role',
-        'satatus',
+        'is_active',
         'email',
-        'email_verified_at',
         'password',
         'profile_photo_path',
+        'profile_updated_at',
+        'virtual_account_number',
+        'bank_name',
+        'balance',
     ];
 
     /**
@@ -96,11 +98,6 @@ class User extends Authenticatable
             ->orWhere('first_name', 'like', "%$search%")
             ->orWhere('last_name', 'like', "%$search%")
             ->orWhere('middle_name', 'like', "%$search%");
-    }
-
-    public function tickets()
-    {
-        return $this->hasMany(Ticket::class);
     }
 
     public function transactions()

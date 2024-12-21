@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
-            $table->string('reference')->unique();
+            $table->string('transaction_reference')->unique();
             $table->decimal('amount', 15, 2);
-            $table->enum('type', ['credit', 'debit']);
-            $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
+            $table->enum('transaction_type', ['credit', 'debit']);
+            $table->enum('status', ['pending', 'successful', 'failed'])->default('pending');
             $table->text('description')->nullable();
-            $table->string('photo_path')->nullable();
+            $table->timestamp('processed_at')->nullable();
             $table->timestamps();
         });
     }

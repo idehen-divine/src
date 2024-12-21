@@ -1,8 +1,7 @@
 <x-auth-layout>
+    <x-validation-errors class="mb-4" />
         <div
             class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white drop-shadow-md dark:bg-gray-800 shadow-md overflow-hidden rounded-lg">
-
-            <x-validation-errors class="mb-4" />
 
             @if (session('status'))
                 <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
@@ -11,7 +10,7 @@
             @endif
 
             <div class="flex flex-col relative items-start mb-4 z-10">
-                <h1 class="font-bold text-3xl text-gray-800 dark:text-gray-200"> Welcome Back! </h1>
+                <h1 class="font-bold text-3xl text-gray-800 dark:text-gray-200"> Welcome Back!</h1>
                 <p class="font-bold text-sm text-gray-800 dark:text-gray-200">Login Your account now</p>
             </div>
 

@@ -28,17 +28,6 @@ class AdminSeeder extends Seeder
         ]);
 
         User::create([
-            'user_name' => 'manager',
-            'uid' => '000001',
-            'first_name' => 'jane',
-            'last_name' => 'doe',
-            'email' => 'manager@manager.com',
-            'password' => Hash::make('password'),
-            'role' => 'MANAGER',
-            'email_verified_at' => now(),
-        ]);
-
-        User::create([
             'user_name' => 'user',
             'uid' => '000002',
             'first_name' => 'jane',

@@ -48,17 +48,7 @@ class Helpers
     {
         return DB::table('nationalities')->get();
     }
-
-    /**
-     * Retrieves all countries from the database.
-     *
-     * @return \Illuminate\Support\Collection A collection of country records.
-     */
-    public static function getCountries()
-    {
-        return DB::table('countries')->get();
-    }
-
+    
     /**
      * Retrieves all states from the database.
      *

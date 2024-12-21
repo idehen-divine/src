@@ -12,32 +12,13 @@ class AdminController extends Controller
         return view('admin.users.index');
     }
 
-    public function getAllGames()
-    {
-        return view('admin.games.index');
-    }
-
-    public function getAllTickets(Game $game)
-    {
-        return view('admin.tickets.index', [
-            'game' => $game
-        ]);
-    }
-
-    public function getTicket(Ticket $ticket)
-    {
-        return view('admin.tickets.ticket', [
-            'id' => $ticket
-        ]);
-    }
-
     public function transaction()
     {
         return view('admin.transaction.index');
     }
 
-    public function winners()
+    public function settings()
     {
-        return view('admin.winners.index');
+        return view('admin.settings.index');
     }
 }
