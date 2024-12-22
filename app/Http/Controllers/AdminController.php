@@ -12,6 +12,11 @@ class AdminController extends Controller
         return view('admin.users.index');
     }
 
+    public function investments()
+    {
+        return view('admin.investments.index');
+    }
+
     public function transaction()
     {
         return view('admin.transaction.index');

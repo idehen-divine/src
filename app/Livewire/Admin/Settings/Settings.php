@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Admin\Settings;
 
-use App\Models\Setting;
 use Livewire\Component;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Validator;
@@ -52,16 +51,18 @@ class Settings extends Component
             'app_timezone' => 'required|string',
             'app_currency' => 'required',
             'app_currency_logo' => 'required',
-            'app_instagram' => 'required',
-            'app_facebook' => 'required',
-            'app_twitter' => 'required',
-            'app_youtube' => 'required',
+            'app_instagram' => 'sometimes|url',
+            'app_facebook' => 'sometimes|url',
+            'app_twitter' => 'sometimes|url',
+            'app_youtube' => 'sometimes|url',
         ]);
 
         if ($validator->fails()) {
             $this->dispatch('triggerToast', $validator->errors()->all());
             return;
         }
+
+        $needsUpdate = HelpersSettings::getValue('app_name') != $this->app_name || HelpersSettings::getValue('app_timezone') != $this->app_timezone;
 
         HelpersSettings::setValue('app_name', $this->app_name);
         HelpersSettings::setValue('app_description', $this->app_description);
@@ -82,13 +83,15 @@ class Settings extends Component
             'type' => 'success',
         ]);
 
-        // $envPath = base_path('.env');
-        // $envContent = file_get_contents($envPath);
-        // $updatedContent = preg_replace('/^APP_NAME=.*$/m', "APP_NAME={$this->app_name}", $envContent);
-        // $updatedContent = preg_replace('/^APP_TIMEZONE=.*$/m', "APP_TIMEZONE={$this->app_timezone}", $envContent);
-        // file_put_contents($envPath, $updatedContent);
-        // Artisan::call('config:clear');
-        // Artisan::call('config:cache');
+        if ($needsUpdate) {
+            $envPath = base_path('.env');
+            $envContent = file_get_contents($envPath);
+            $updatedContent = preg_replace('/^APP_NAME=.*$/m', "APP_NAME=\"{$this->app_name}\"", $envContent);
+            $updatedContent = preg_replace('/^APP_TIMEZONE=.*$/m', "APP_TIMEZONE={$this->app_timezone}", $updatedContent);
+            file_put_contents($envPath, $updatedContent);
+            Artisan::call('config:cache');
+        }
+
     }
 
     public function boot()
@@ -104,11 +107,13 @@ class Settings extends Component
         $this->app_currency_logo = HelpersSettings::getValue('app_currency_logo');
         $this->app_instagram = HelpersSettings::getValue('app_instagram');
         $this->app_facebook = HelpersSettings::getValue('app_facebook');
+        $this->app_twitter = HelpersSettings::getValue('app_twitter');
         $this->app_youtube = HelpersSettings::getValue('app_youtube');
     }
 
     public function render()
     {
+        // dd(now());
         return view('admin.settings.settings');
     }
 }

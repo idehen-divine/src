@@ -36,6 +36,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'forceVerif
         Route::controller(AdminController::class)->middleware('admin')->group(function () {
             Route::get('/users', 'getAllUsers')->name('users');
             Route::get('/user/{id}', 'getUser')->name('user');
+            Route::get('/investments', 'investments')->name('investments');
             Route::get('/transaction', 'transaction')->name('transaction');
             Route::get('/profile', 'profile')->name('profile');
             Route::get('/settings', 'settings')->name('settings');

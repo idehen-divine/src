@@ -26,3 +26,23 @@
         </ul>
     </div>
 @endif
+
+<div x-data="{ show: false, errors: [] }" x-show="show" x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 translate-y-2" x-init="$wire.on('triggerToast', (errorsMessage) => {
+        if (errorsMessage.length > 0) {
+            show = true;
+            errors = errorsMessage[0];
+            setTimeout(() => show = false, 5000); // Hide after 5 seconds
+        }
+    });"
+    class="fixed top-5 right-5 bg-red-500 text-white px-4 py-3 rounded shadow-lg w-72 z-50">
+
+    <strong>Whoops! Something went wrong:</strong>
+    <ul class="mt-2 text-sm list-disc list-inside">
+        <template x-for="error in errors" :key="error">
+            <li x-text="error"></li>
+        </template>
+    </ul>
+</div>

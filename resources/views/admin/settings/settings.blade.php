@@ -1,25 +1,5 @@
 <div>
-    <div x-data="{ show: false, errors: [] }" x-show="show" x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-        x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-0"
-        x-transition:leave-end="opacity-0 translate-y-2" x-init="Livewire.on('triggerToast', (errors) => {
-            if (errors.length > 0) {
-                show = true;
-                errors = errors;
-                setTimeout(() => show = false, 5000); // Hide after 5 seconds
-            }
-        });"
-        class="fixed top-5 right-5 bg-red-500 text-white px-4 py-3 rounded shadow-lg w-72 z-50">
-
-        <strong>Whoops! Something went wrong:</strong>
-        <ul class="mt-2 text-sm list-disc list-inside">
-            <template x-for="error in errors" :key="error">
-                <li x-text="error"></li>
-            </template>
-        </ul>
-    </div>
-
-
+    <x-validation-errors/>
     <div class="card bg-base-100 w-80vw h-50vh shadow-xl">
         <div class="card-body">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -102,19 +82,24 @@
                 <div class="">
                     <h2 class="card-title">App Socials</h2>
                     <div class="mb-3">
-                        <x-label for="app_instagram" :value="__('App Name')" />
+                        <x-label for="app_instagram" :value="__('Instagram URL')" />
                         <x-input id="app_instagram" class="block mt-1 w-full" type="email"
                             wire:model="app_instagram" />
                     </div>
                     <div class="mb-3">
-                        <x-label for="app_facebook" :value="__('App Description')" />
+                        <x-label for="app_facebook" :value="__('Facebook URL')" />
                         <x-input id="app_facebook" class="block mt-1 w-full" type="tel"
                             wire:model="app_facebook" />
                     </div>
                     <div class="mb-3">
-                        <x-label for="app_youtube" :value="__('Key Words')" />
+                        <x-label for="app_youtube" :value="__('Youtube URL')" />
                         <x-input id="app_youtube" class="block mt-1 w-full" type="text"
                             wire:model="app_youtube" />
+                    </div>
+                    <div class="mb-3">
+                        <x-label for="app_twitter" :value="__('Twitter URL')" />
+                        <x-input id="app_twitter" class="block mt-1 w-full" type="text"
+                            wire:model="app_twitter" />
                     </div>
                 </div>
             </div>

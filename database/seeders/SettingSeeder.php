@@ -72,6 +72,11 @@ class SettingSeeder extends Seeder
                 'description' => 'The Facebook username of the app'
             ],
             [
+                'name' => 'app_twitter',
+                'value' => '',
+                'description' => 'The Twitter username of the app'
+            ],
+            [
                 'name' => 'app_youtube',
                 'value' => '',
                 'description' => 'The YouTube username of the app'
