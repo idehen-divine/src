@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ ucwords(settings()->getValue('app_name', config('app.name'))) }}{{ ' || ' . ($title ?? '') }}</title>
+    <title>{{ ucwords(settings()->getValue('app_name', config('app.name'))) }}{{ ' | ' . ($title ?? '') }}</title>
 
     <meta name="keywords" content="{{ settings()->getValue('app_keywords', config('app.name')) }}" />
     <meta name="description" content="{{ settings()->getValue('app_description', config('app.name')) }}" />
