@@ -10,6 +10,9 @@
                 </a>
             </h1>
             <ul class="flex gap-10 items-center max-md:hidden">
+                <li class="{{ Route::is('home') ? 'active' : '' }}">
+                    <a href="{{ route('home') }}">Home</a>
+                </li>
                 <li class="{{ Route::is('faqs') ? 'active' : '' }}">
                     <a href="{{ route('faqs') }}">FAQs</a>
                 </li>
@@ -21,6 +24,9 @@
             <div :class="{ 'block': open, 'hidden': !open }"
                 class="w-3/4 flex-col right-0 fixed bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 p-10 text-lg z-10 font-bold ease-in-out top-16 gap-10 items-start">
                 <ul>
+                    <li class="{{ Route::is('home') ? 'active' : '' }}">
+                        <a href="{{ route('home') }}">Home</a>
+                    </li>
                     <li class="{{ Route::is('faqs') ? 'active' : '' }}">
                         <a href="{{ route('faqs') }}">FAQs</a>
                     </li>
