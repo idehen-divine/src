@@ -5,3 +5,6 @@
 [x-cloak] {
     display: none;
 }
+.active {
+    @apply border-b-2 border-orange-400;
+}

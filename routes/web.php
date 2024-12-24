@@ -18,9 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(GuestController::class)->group(function () {
     Route::get('/', 'homePage')->name('home');
+    Route::get('/investments-plans', 'investmentsPlansPage  ')->name('investments-plans');
+    Route::get('/faqs', 'faqsPage')->name('faqs');
     Route::get('/about-us', 'aboutUsPage')->name('about-us');
     Route::get('/contact-us', 'contactUsPage')->name('contact-us');
-    Route::get('faqs', 'faqsPage')->name('faqs');
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'forceVerification'])->group(function () {

@@ -20,18 +20,18 @@
         </div>
     </section>
 
+    <!-- How it works -->
     <section>
         <div class="container mx-auto px-16  py-4 md:py-10">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Text Section -->
                 <div>
                     <h3 class="text-3xl font-extrabold pb-6">
-                        Features that make your team more &nbsp;
-                        <span class="underline decoration-primary">productive</span>
+                        How it
+                        <span class="underline decoration-orange-500">Works</span>
                     </h3>
                     <p class="text-gray-500">
-                        Libero tincidunt magna, leo tempus aenean. Adipiscing vestibulum vehicula vel donec pulvinar
-                        aliquam, blandit lorem.
+                        TurnByTurnWin is a financial technology company that is committed to helping people achieve
+                        their financial goals.
                     </p>
                 </div>
             </div>
@@ -39,8 +39,8 @@
                 <!-- Feature List -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <!-- Single Feature -->
-                    <div class="text-center md:text-left">
-                        <div class="flex justify-center md:justify-start items-center">
+                    <div class="md:text-left">
+                        <div class="flex justify-start items-center">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="w-8 h-8 text-primary bg-orange-500 text-white p-1 rounded-full" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -50,15 +50,15 @@
                                     d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7">
                                 </path>
                             </svg>
-                            <h5 class="ml-3 font-bold text-lg">Heading</h5>
+                            <h5 class="ml-3 font-bold text-lg">Investments</h5>
                         </div>
                         <p class="text-gray-500 mt-3">
-                            Auctor nisi et, habitant gravida ad lectus posuere.
+                            You choose a suitable <a class="underline" href="{{ route('investments-plans') }}">invesment plan</a>
                         </p>
                     </div>
                     <!-- Repeat Feature -->
-                    <div class="text-center md:text-left">
-                        <div class="flex justify-center md:justify-start items-center">
+                    <div class="md:text-left">
+                        <div class="flex justify-start items-center">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="w-8 h-8 text-primary bg-orange-500 text-white p-1 rounded-full" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -68,15 +68,15 @@
                                     d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7">
                                 </path>
                             </svg>
-                            <h5 class="ml-3 font-bold text-lg">Heading</h5>
+                            <h5 class="ml-3 font-bold text-lg">Prospect Selection</h5>
                         </div>
                         <p class="text-gray-500 mt-3">
-                            Auctor nisi et, habitant gravida ad lectus posuere.
+                            Be among the 20 weekly lucky winners
                         </p>
                     </div>
                     <!-- Single Feature -->
-                    <div class="text-center md:text-left">
-                        <div class="flex justify-center md:justify-start items-center">
+                    <div class="md:text-left">
+                        <div class="flex justify-start items-center">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="w-8 h-8 text-primary bg-orange-500 text-white p-1 rounded-full" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -86,15 +86,15 @@
                                     d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7">
                                 </path>
                             </svg>
-                            <h5 class="ml-3 font-bold text-lg">Heading</h5>
+                            <h5 class="ml-3 font-bold text-lg">Contest Participation</h5>
                         </div>
                         <p class="text-gray-500 mt-3">
-                            Auctor nisi et, habitant gravida ad lectus posuere.
+                            Consistent depositing for 3 months.
                         </p>
                     </div>
                     <!-- Repeat Feature -->
-                    <div class="text-center md:text-left">
-                        <div class="flex justify-center md:justify-start items-center">
+                    <div class="md:text-left">
+                        <div class="flex justify-start items-center">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="w-8 h-8 text-primary bg-orange-500 text-white p-1 rounded-full" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -104,16 +104,23 @@
                                     d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7">
                                 </path>
                             </svg>
-                            <h5 class="ml-3 font-bold text-lg">Heading</h5>
+                            <h5 class="ml-3 font-bold text-lg">Outcome After 3 Months</h5>
                         </div>
                         <p class="text-gray-500 mt-3">
-                            Auctor nisi et, habitant gravida ad lectus posuere.
+                           Winners get N100,000 or N200,000.
                         </p>
+                    </div>
+                    <div class="md:text-left mt-3">
+                        <a href="{{ route('about-us') }}"
+                            class="btn bg-orange-500 hover:bg-orange-400 border-none py-2 px-5 text-xl font-bold text-white">
+                            Learn More <i class='bx bx-right-arrow-alt ms-5'></i>
+                        </a>
                     </div>
                 </div>
                 <!-- Image Section -->
                 <div class="order-first md:order-last">
-                    <svg class="rounded-md w-full h-auto object-cover" style="min-height: 300px;"  xmlns="http://www.w3.org/2000/svg" width="1003.67004" height="595.29205"
+                    <svg class="rounded-md w-full h-auto object-cover" style="min-height: 300px;"
+                        xmlns="http://www.w3.org/2000/svg" width="1003.67004" height="595.29205"
                         viewBox="0 0 1003.67004 595.29205"
                         data-src="https://cdn.undraw.co/illustrations/our-solution_wpgp.svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" role="img" artist="Katerina Limpitsouni"
@@ -300,13 +307,13 @@
         </div>
     </section>
 
-    <!-- Pricing -->
+    <!-- Investments Plans -->
     <section class="pb-10 mb-4">
-        <h2 class="text-lg font-bold text-center">Investments</h2>
+        <h2 class="text-lg font-bold text-center">Investments Plans</h2>
         <div class="w-32 h-1 bg-orange-500 mx-auto my-2"></div>
         <h3 class="text-gray-500 text-center mb-8">What Plan Is Suitable For You</h3>
-        <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4 py-6">
-            <!-- Standard Plan -->
+        <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-14 py-6">
+            <!-- Tier 1 Plan -->
             <div class="border border-zinc-300 rounded-lg p-6 text-center flex flex-col h-full md:h-[450px]">
                 <h2 class="text-xl font-semibold">Tier 1</h2>
                 <p class="text-2xl font-bold my-2">{{ settings()->getValue('app_currency_logo', '₦') }}500</p>
@@ -321,7 +328,7 @@
                 <button class="btn bg-orange-500 hover:bg-orange-400 border-none text-white mt-4">INVEST</button>
             </div>
 
-            <!-- Pro Plan -->
+            <!-- Tier 2 Plan -->
             <div
                 class="bg-orange-500 rounded-lg p-6 text-white text-center flex flex-col h-full md:h-[450px] relative">
                 <span
@@ -339,86 +346,11 @@
                 </ul>
                 <button class="btn bg-white hover:bg-gray-100 border-none text-orange-500 mt-4">INVEST</button>
             </div>
-
-            <!-- Enterprise Plan -->
-            <div class="border border-zinc-300 rounded-lg p-6 text-center flex flex-col h-full md:h-[450px]">
-                <h2 class="text-xl font-semibold">Tier 3</h2>
-                <p class="text-2xl font-bold my-2">{{ settings()->getValue('app_currency_logo', '₦') }}2000</p>
-                <ul class="text-left space-y-2 flex-grow">
-                    <li class="flex items-center"><span class="text-green-500">✔️</span> Lectus ut nibh quam, felis
-                        porttitor.</li>
-                    <li class="flex items-center"><span class="text-green-500">✔️</span> Ante nec venenatis etiam
-                        lacinia.</li>
-                    <li class="flex items-center"><span class="text-green-500">✔️</span> Porta suscipit netus ad ac.
-                    </li>
-                    <li class="flex items-center"><span class="text-green-500">✔️</span> Morbi praesens aptent
-                        integer.
-                    </li>
-                </ul>
-                <button class="btn bg-orange-500 hover:bg-orange-400 border-none text-white mt-4">INVEST</button>
-            </div>
         </div>
     </section>
 
     <!-- Testimonial -->
-    <section class="max-w-2xl mx-auto pb-10 mb-4">
-        <div x-data="{
-            currentIndex: 0,
-            testimonials: [0, 1, 2],
-            autoSwitch() {
-                setInterval(() => {
-                    this.currentIndex = (this.currentIndex < this.testimonials.length - 1) ?
-                        this.currentIndex + 1 :
-                        0;
-                }, 3000);
-            }
-        }" x-init="autoSwitch()">
-            <h2 class="text-lg font-bold text-center">Testimonials</h2>
-            <div class="w-32 h-1 bg-orange-500 mx-auto my-2"></div>
-            <h3 class="text-gray-500 text-center mb-8">What Clients Are Saying</h3>
-
-            <div x-show="currentIndex === 0" class="flex flex-col justify-center items-center">
-                <img src="https://placehold.co/100x100" alt="Client Photo"
-                    class="rounded-full border-4 border-white mb-4" />
-                <p class="text-center italic">
-                    "We are so glad that we made the switch to use Honeypress this year and our results were fantastic."
-                </p>
-                <p class="font-semibold mt-2">Amanda Smith</p>
-                <p class="text-sm">Team Leader</p>
-            </div>
-
-            <div x-show="currentIndex === 1" class="flex flex-col justify-center items-center">
-                <img src="https://placehold.co/100x100" alt="Client Photo"
-                    class="rounded-full border-4 border-white mb-4" />
-                <p class="text-center italic">"Honeypress has completely transformed how we manage our
-                    workflows.
-                    Highly recommended!"</p>
-                <p class="font-semibold mt-2">John Doe</p>
-                <p class="text-sm">Project Manager</p>
-            </div>
-
-            <div x-show="currentIndex === 2" class="flex flex-col justify-center items-center">
-                <img src="https://placehold.co/100x100" alt="Client Photo"
-                    class="rounded-full border-4 border-white mb-4" />
-                <p class="text-center italic">"Using Honeypress has been a game changer for our team’s
-                    efficiency
-                    and productivity."</p>
-                <p class="font-semibold mt-2">Jane Brown</p>
-                <p class="text-sm">CEO</p>
-            </div>
-
-            <div class="flex justify-between mt-6">
-                <button @click="currentIndex = (currentIndex > 0) ? currentIndex - 1 : testimonials.length - 1"
-                    class="btn bg-gray-100 hover:btn-ghost dark:bg-gray-800 py-2 px-4 text-2xl">
-                    <i class="bx bx-chevron-left"></i>
-                </button>
-                <button @click="currentIndex = (currentIndex < testimonials.length - 1) ? currentIndex + 1 : 0"
-                    class="btn bg-gray-100 hover:btn-ghost dark:bg-gray-800 py-2 px-4 text-2xl">
-                    <i class="bx bx-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-    </section>
+    <x-testimonial/>
 
     <!-- trio card -->
     <section class=" pb-10 mb-4">

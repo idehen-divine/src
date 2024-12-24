@@ -1,5 +1,5 @@
 <div>
-    <x-validation-errors/>
+    <x-validation-errors />
     <div class="card bg-base-100 w-80vw h-50vh shadow-xl">
         <div class="card-body">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -29,7 +29,14 @@
                     </div>
                     <div class="mb-3">
                         <x-label for="app_phone" :value="__('Telephone Number')" />
-                        <x-input id="app_phone" class="block mt-1 w-full" type="tel" wire:model="app_phone" />
+                        <label
+                            class="flex items-center border border-gray-300 rounded-lg z-10 mb-3 peer-focus:border-indigo-500 peer-focus:ring peer-focus:ring-indigo-500 dark:peer-focus:border-indigo-600 dark:peer-focus:ring-indigo-600">
+                            <span class="ml-2 mr-0 whitespace-nowrap">+(234)</span>
+                            <input id="app_phone"
+                                class="peer ps-1 border-none outline-none focus:ring-0 focus:outline-none dark:bg-gray-900 dark:text-gray-300 block w-full"
+                                type="tel" wire:model="app_phone" minlength="10" maxlength="10" />
+                        </label>
+
                     </div>
                     <div class="mb-3">
                         <x-label for="app_address" :value="__('Address')" />

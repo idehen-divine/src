@@ -30,11 +30,7 @@
 
     <!-- Styles -->
     @livewireStyles
-    <style>
-        .active {
-            border-bottom: 2px gray solid;
-        }
-    </style>
+    @stack('styles')
 </head>
 
 <body class="bg-white dark:bg-gray-900 max-w-[100vw] font-sans antialiased">
@@ -46,8 +42,8 @@
         {{ $slot }}
     </main>
 
-    <!-------Footer------->
-    <footer class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
         <div class="p-6 pb-2 mx-auto flex flex-col gap-2">
             <div class="flex flex-col-reverse md:flex-row">
                 <div class="w-full md:w-1/3 px-6">
@@ -115,6 +111,7 @@
     </footer>
 
     @livewireScripts()
+    @stack('scripts')
 </body>
 
 </html>

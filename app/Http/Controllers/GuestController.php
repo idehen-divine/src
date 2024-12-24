@@ -8,12 +8,22 @@ class GuestController extends Controller
 {
     public function homePage()
     {
-        return view('guest.home-page');
+        return view('guest.home.index');
     }
 
-    public function resultPage()
+    public function investmentsPlansPage()
     {
-        return view('guest.results.index');
+        return view('guest.plans.index');
+    }
+
+    public function faqsPage()
+    {
+        return view('guest.faqs.index');
+    }
+
+    public function aboutUsPage()
+    {
+        return view('guest.about.index');
     }
 
     public function contactUsPage()

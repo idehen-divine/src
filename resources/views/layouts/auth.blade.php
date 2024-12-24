@@ -16,6 +16,7 @@
 
     <!-- Styles -->
     @livewireStyles
+    @stack('styles')
 </head>
 
 <body class="w-[100vw] h-[100vh] items-center justify-center flex font-sans text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-900 antialiased">
@@ -28,6 +29,7 @@
         {{ $slot }}
 
     @livewireScripts
+    @stack('scripts')
 </body>
 
 </html>

@@ -41,9 +41,8 @@
 
     <!-- Button to toggle dropdown -->
     <button @click="open = !open"
-    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out"
-    {{-- class="p-0 px-2 mx-2 flex items-center text-gray-800 dark:text-gray-100" --}}
-    >
+        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out"
+        {{-- class="p-0 px-2 mx-2 flex items-center text-gray-800 dark:text-gray-100" --}}>
         <!-- Current selected theme icon -->
         <template x-if="theme === 'light'">
             <svg class="swap-off h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -67,8 +66,8 @@
     </button>
 
     <!-- Dropdown Menu -->
-    <div x-show="open" @click.outside="open = false"
-        class="absolute rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg z-10 mt-2">
+    <div x-show="open" @click.outside="open = false" :class="{ 'block': open, 'hidden': !open }"
+        class="hidden absolute rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg z-10 mt-2">
         <button @click="changeTheme('light')" class="w-full text-left p-2 flex items-center space-x-2">
             <svg class="swap-off h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path
