@@ -26,6 +26,8 @@ Route::controller(GuestController::class)->group(function () {
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'forceVerification'])->group(function () {
 
+    Route::get('/user/email/update', [UserController::class, 'updateEmailView'])->middleware('isupdated')->withoutMiddleware('forceVerification')->name('email.update');
+    Route::post('/user/email/update', [UserController::class, 'updateEmail'])->middleware('isupdated')->withoutMiddleware('forceVerification')->name('email.update');
     Route::get('/user/profile/update', [UserController::class, 'updateProfile'])->middleware('isupdated')->name('profile.update');
 
     Route::middleware('updated')->group(function () {
