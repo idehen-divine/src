@@ -10,19 +10,14 @@ class Cards extends Component
     public function subscribe($plan)
     {
         if (!Plan::getActivePlans()) {
-            auth()->user()->plans()->create([
-                'plan' => $plan,
-                'start_date' => now(),
-                'end_date' => now()->addDays(90),
-            ]);
-
+            Plan::subscribe($plan);
             $this->dispatch('notification', [
                 'message' => 'Successfully subscribe to a plan',
                 'type' => 'success',
             ]);
             $this->dispatch('redirect', url: route('checkins'));
         } else {
-            
+
             $this->dispatch('notification', [
                 'message' => 'User already subscribed to a plan. Pls wait while redirect',
                 'type' => 'error',

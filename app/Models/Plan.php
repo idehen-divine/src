@@ -58,11 +58,10 @@ class Plan extends Model
             ->latest()->first();
     }
 
-    public static function renewOrMigrate($newPlan)
+    public static function subscribe($plan)
     {
-        $existingSubscription = self::getActivePlans();
-        $existingSubscription->update([
-            'plan' => $newPlan,
+        auth()->user()->plans()->create([
+            'plan' => $plan,
             'start_date' => now(),
             'end_date' => now()->addDays(90),
         ]);
