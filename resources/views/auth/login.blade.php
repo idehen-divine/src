@@ -1,4 +1,4 @@
-<x-auth-layout>
+<x-auth-layout title="Login">
     <x-validation-errors class="mb-4" />
         <div
             class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white drop-shadow-md dark:bg-gray-800 shadow-md overflow-hidden rounded-lg">
