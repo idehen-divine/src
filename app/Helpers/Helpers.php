@@ -13,10 +13,15 @@ class Helpers
      * get auth users details
      * @return mixed
      */
-    public function getAuthUser()
-    {
-        return User::find(auth()->guard()->user()->id);
-    }
+    // public function getAuthUser()
+    // {
+    //     $user = auth()->user();
+    //     if (!$user) {
+    //         throw new \Exception('No authenticated user found');
+    //     }
+
+    //     return $user;
+    // }
 
     /**
      * Generates a unique identifier (UID) with a fixed length of 10 characters.
@@ -48,7 +53,7 @@ class Helpers
     {
         return DB::table('nationalities')->get();
     }
-    
+
     /**
      * Retrieves all states from the database.
      *

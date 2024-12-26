@@ -18,6 +18,7 @@
     },
     "dependencies": {
         "boxicons": "^2.1.4",
+        "lottie-web": "^5.12.2",
         "theme-change": "^2.5.0"
     }
 }

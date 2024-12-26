@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(GuestController::class)->group(function () {
     Route::get('/', 'homePage')->name('home');
-    Route::get('/investments-plans', 'investmentsPlansPage  ')->name('investments-plans');
+    Route::get('/investments-plans', 'investmentsPlansPage')->name('investments-plans');
     Route::get('/faqs', 'faqsPage')->name('faqs');
     Route::get('/about-us', 'aboutUsPage')->name('about-us');
     Route::get('/contact-us', 'contactUsPage')->name('contact-us');
@@ -36,7 +36,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'forceVerif
 
         Route::controller(AdminController::class)->middleware('admin')->group(function () {
             Route::get('/users', 'getAllUsers')->name('users');
-            Route::get('/user/{id}', 'getUser')->name('user');
+            Route::get('/user/{id}/profiles', 'getUser')->name('user');
             Route::get('/investments', 'investments')->name('investments');
             Route::get('/transaction', 'transaction')->name('transaction');
             Route::get('/profile', 'profile')->name('profile');
@@ -44,7 +44,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'forceVerif
         });
 
         Route::controller(UserController::class)->middleware('user')->group(function () {
-
+            Route::get('/checkins', 'checkins')->name('checkins');
+            Route::get('/transactions', 'transactions')->name('transactions');
         });
     });
 

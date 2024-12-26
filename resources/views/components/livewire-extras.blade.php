@@ -45,3 +45,10 @@
 </x-dialog-modal>
 @endif
 
+@script
+<script>
+    $wire.on('redirect', (event) => {
+        window.location.href = event.url;
+    });
+</script>
+@endscript

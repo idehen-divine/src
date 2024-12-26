@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ticket;
-use Illuminate\Http\Request;
+use App\Models\Plan;
 
 class UserController extends Controller
 {
@@ -12,30 +11,11 @@ class UserController extends Controller
         return view('profile.update');
     }
 
-    public function getAllTickets()
+    public function checkins()
     {
-        return view('user.tickets.index');
-    }
-
-    public function getUserTickets()
-    {
-        return view('user.tickets.tickets');
-    }
-
-    public function getTicket(Ticket $ticket)
-    {
-        return view('user.tickets.ticket', [
-            'id' => $ticket
+        $activePlan = Plan::getActivePlans();
+        return view('user.plans.index', [
+            'activePlan' => $activePlan,
         ]);
-    }
-
-    public function getUserHistory()
-    {
-        return view('user.history.index');
-    }
-
-    public function getUserWallet()
-    {
-        return view('user.wallet.index');
     }
 }

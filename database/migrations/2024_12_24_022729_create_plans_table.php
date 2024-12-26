@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tickets', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid('game_id')->constrained()->onDelete('cascade');
+        Schema::create('plans', function (Blueprint $table) {
+            $table->id();
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
-            $table->string('ticket_number', 16)->unique();
-            $table->json('numbers');
-            $table->enum('status', ['pending', 'won', 'lost'])->default('pending');
+            $table->enum('plan', [1, 2]);
+            $table->enum('status', ['active', 'expired'])->default('active');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('plans');
     }
 };

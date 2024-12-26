@@ -9,23 +9,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('winners', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+        Schema::create('daily_checkins', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('plan_id')->constrained()->onDelete('cascade');
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
-            $table->foreignUuid('game_id')->constrained()->onDelete('cascade');
-            $table->foreignUuid('ticket_id')->constrained()->onDelete('cascade');
-            $table->json('matched_numbers');
+            $table->date('checked_in_at');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('winners');
+        Schema::dropIfExists('daily_checkins');
     }
 };

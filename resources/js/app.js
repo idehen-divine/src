@@ -1,6 +1,7 @@
 import "./bootstrap";
 import "boxicons/css/boxicons.min.css";
 import { themeChange } from "theme-change";
+import lottie from "lottie-web";
 
 document.addEventListener("DOMContentLoaded", () => {
     themeChange(false); // Initialize theme-change without auto-save

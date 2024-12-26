@@ -30,6 +30,9 @@
                             {{ __('Settings') }}
                         </x-nav-link>
                     @elseif (helpers()->isUser())
+                        <x-nav-link href="{{ route('checkins') }}" :active="$activePage === 'checkins'">
+                            {{ __('Checkins') }}
+                        </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -39,14 +42,14 @@
                 @if (helpers()->isUser())
                     <div class="hidden sm:-my-px sm:ms-10 sm:flex">
                         <!-- Button -->
-                        <div class="relative">
+                        {{-- <div class="relative">
                             <a href="{{ route('user.wallet') }}"
                                 class="flex items-center gap-2 px-4 py-2 c bg-red-600 hover:bg-red-700 rounded-lg shadow-lg">
                                 <i class='bx bx-wallet text-xl'></i>
                                 <span class="font-semibold"
                                     wire:poll.visable.5s>{{ settings()->getValue('app_currency_logo', '$') . $balance }}</span>
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 @endif
 
@@ -110,14 +113,14 @@
                 @if (helpers()->isUser())
                     <div class="flex">
                         <!-- Button -->
-                        <div class="relative">
+                        {{-- <div class="relative">
                             <span
                                 class="flex items-center gap-1 px-2 py-1 text-gray-200 bg-red-600 hover:bg-red-700 rounded-lg shadow-lg">
                                 <i class='bx bx-wallet text-base'></i>
                                 <span class="text-sm"
                                     wire:poll.visable.5s>{{ settings()->getValue('app_currency_logo', '$') . $balance }}</span>
                             </span>
-                        </div>
+                        </div> --}}
                     </div>
                 @endif
                 <button @click="open = ! open"

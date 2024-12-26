@@ -104,4 +104,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class);
     }
+
+    public function plans()
+    {
+        return $this->hasOne(Plan::class)->where('status', 'active');
+    }
+
+    public function dailyCheckin()
+    {
+        return $this->hasMany(DailyCheckin::class);
+    }
 }
