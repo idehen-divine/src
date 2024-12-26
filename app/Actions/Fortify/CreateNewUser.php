@@ -3,10 +3,11 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Laravel\Jetstream\Jetstream;
+use App\Jobs\EmailVerificationJob;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Laravel\Jetstream\Jetstream;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -31,7 +32,7 @@ class CreateNewUser implements CreatesNewUsers
             'uid' => helpers()->generateUid(),
         ]);
 
-        $user->sendEmailVerificationNotification();
+        EmailVerificationJob::dispatch($user);
 
         return $user;
     }
