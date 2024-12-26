@@ -26,7 +26,7 @@
             <div class="relative z-10" x-show="step === 1">
                 <label class="input input-bordered flex items-center gap-1 z-10 mb-3">
                     <i class="bx bx-at text-gray-700 dark:text-gray-300 opacity-75" style="font-size: 1rem"></i>
-                    <input class="grow border-none focus:border-none focus:outline-none" type="text"
+                    <input class="grow border-none focus:border-none focus:outline-none focus:ring-0" type="text"
                         wire:model="username" name="username" placeholder="Add a username" required autofocus
                         autocomplete="username" />
                 </label>
@@ -37,7 +37,7 @@
                 <label class="input input-bordered flex items-center gap-2 z-10 mb-3">
                     <i class="bx bx-user-circle text-gray-700 dark:text-gray-300 opacity-75"
                         style="font-size: 1.5rem"></i>
-                    <input class="grow border-none focus:border-none focus:outline-none" type="text"
+                    <input class="grow border-none focus:border-none focus:outline-none focus:ring-0" type="text"
                         name="first_name" placeholder="First Name" wire:model="first_name" required autofocus
                         autocomplete="first_name" />
                 </label>
@@ -45,15 +45,16 @@
                 <label class="input input-bordered flex items-center gap-2 z-10 mb-3">
                     <i class="bx bx-user-circle text-gray-700 dark:text-gray-300 opacity-75"
                         style="font-size: 1.5rem"></i>
-                    <input class="grow border-none focus:border-none focus:outline-none" type="text" name="last_name"
-                        placeholder="Last Name" wire:model="last_name" required autocomplete="last_name" />
+                    <input class="grow border-none focus:border-none focus:outline-none focus:ring-0" type="text"
+                        name="last_name" placeholder="Last Name" wire:model="last_name" required
+                        autocomplete="last_name" />
                 </label>
 
                 <label class="input input-bordered flex items-center gap-2 z-10 mb-3">
                     <i class="bx bx-user-circle text-gray-700 dark:text-gray-300 opacity-75"
                         style="font-size: 1.5rem"></i>
-                    <input class="grow border-none focus:border-none focus:outline-none" type="text"
-                        name="middle_name" placeholder="Middle Name (optional)" wire:model="middle_name"
+                    <input class="grow border-none focus:border-none focus:outline-none focus:ring-0" type="text"
+                        name="middle_name" placeholder="Middle Name" wire:model="middle_name" required
                         autocomplete="middle_name" />
                 </label>
             </div>
@@ -62,7 +63,7 @@
             <div class="relative z-10" x-show="step === 3">
                 <div class="flex gap-3 mb-3 justify-between">
                     <input type="date"
-                        class="input input-bordered grow border-none focus:border-none focus:outline-none"
+                        class="input input-bordered grow border-none focus:border-none focus:outline-none focus:ring-0"
                         name="dob" required wire:model="dob" />
                     <div class="flex gap-1 justify-center items-center">
                         <span class="text-gray-800 dark:text-gray-200">
@@ -87,7 +88,7 @@
                 <label class="input input-bordered flex items-center gap-2 mb-3">
                     <i class="bx bx-phone-call text-gray-700 dark:text-gray-300 opacity-75"
                         style="font-size: 1.5rem"></i>+234
-                    <input type="tel" class="grow border-none focus:border-none focus:outline-none"
+                    <input type="tel" class="grow border-none focus:border-none focus:outline-none focus:ring-0"
                         placeholder="Phone Number" name="phone" minlength="10" id="phone" maxlength="10"
                         wire:model="phone_number" required />
                 </label>
@@ -128,17 +129,17 @@
                 <label class="input input-bordered flex items-center gap-2">
                     <i class="bx bxs-location-plus text-gray-700 dark:text-gray-300 opacity-75"
                         style="font-size: 1.5rem"></i>
-                    <input type="text" class="grow" placeholder="Address" name="address" id="address" required
-                        wire:model="address" />
+                    <input type="text" class="grow" placeholder="Address" name="address" id="address"
+                        required wire:model="address" />
                 </label>
             </div>
 
             <!-- Navigation Buttons -->
             <div class="flex gap-4 mt-5 w-full justify-between items-center">
                 <button type="button" id="prevBtn" x-on:click="step--;" :disabled="step === 1"
-                    class="btn btn-primary w-[120px] hover:bg-transparent hover:border-2 hover:text-primary z-10">Previous</button>
+                    class="btn btn-primary w-[120px] hover:bg-transparent hover:border-2 text-white hover:text-primary z-10">Previous</button>
                 <button type="button" id="nextBtn"
-                    class="btn btn-primary w-[120px] hover:bg-transparent hover:border-2 hover:text-primary z-10"
+                    class="btn btn-primary w-[120px] hover:bg-transparent hover:border-2 text-white hover:text-primary z-10"
                     x-on:click="
                                 let inputs = document.querySelectorAll(`[x-show='step === ${step}'] input`);
                                 let valid = true;
@@ -152,7 +153,7 @@
                             "
                     x-show="!(step === steps)">Next</button>
                 <button type="button" id="submitBtn" x-show="(step === steps)"
-                    class="btn btn-primary w-[120px] hover:bg-transparent hover:border-2 hover:text-primary z-10"
+                    class="btn btn-primary w-[120px] hover:bg-transparent hover:border-2 text-white hover:text-primary z-10"
                     wire:click="update">Update</button>
             </div>
 

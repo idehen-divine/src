@@ -26,7 +26,7 @@ class UpdateProfile extends Component
             'username' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
-            'middle_name' => 'sometimes',
+            'middle_name' => 'required',
             'dob' => 'required',
             'gender' => 'required|in:male,female',
             'phone_number' => 'required',
