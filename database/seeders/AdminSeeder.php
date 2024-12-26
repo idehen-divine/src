@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
 
         User::create([
             'user_name' => 'admin',
-            'uid' => '000000',
+            'uid' => '0000000001',
             'first_name' => 'john',
             'last_name' => 'doe',
             'email' => 'admin@admin.com',
@@ -29,7 +29,7 @@ class AdminSeeder extends Seeder
 
         User::create([
             'user_name' => 'user',
-            'uid' => '000002',
+            'uid' => '0000000002',
             'first_name' => 'jane',
             'last_name' => 'doe',
             'email' => 'user@user.com',
