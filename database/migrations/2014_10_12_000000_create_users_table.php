@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('user_name')->nullable();
-            $table->string('uid', 6)->unique();
+            $table->string('uid', 10)->unique();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('middle_name')->nullable();
@@ -34,9 +34,6 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
-            $table->string('virtual_account_number')->nullable()->unique();
-            $table->string('bank_name')->nullable();
-            $table->decimal('balance', 15, 2)->default(0.00);
             $table->timestamps();
         });
     }
