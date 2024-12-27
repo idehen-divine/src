@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
             $table->enum('plan', [1, 2]);
             $table->enum('status', ['active', 'expired'])->default('active');
+            $table->decimal('amount', 10, 2)->default(0);
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();

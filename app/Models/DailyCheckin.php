@@ -29,6 +29,17 @@ class DailyCheckin extends Model
         ]);
     }
 
+    public static function deduct()
+    {
+        $amount = auth()->user()->plans->amount;
+        $balance = auth()->user()->wallet->balance;
+        if ($balance >= $amount) {
+            auth()->user()->wallet->decrement('balance', $amount);
+            return true;
+        }
+        return false;
+    }
+
     public static function getTodayCheckin()
     {
         return self::where('user_id', auth()->user()->id)

@@ -2,9 +2,10 @@
 
 namespace App\Livewire\User\Plans;
 
+use App\Models\Plan;
 use Livewire\Component;
 use App\Models\DailyCheckin;
-use App\Models\Plan;
+use Illuminate\Support\Facades\DB;
 
 class Calender extends Component
 {
@@ -17,22 +18,52 @@ class Calender extends Component
                 'message' => 'You have already checked in today',
                 'type' => 'error',
             ]);
-        } else {
-            if (Plan::getActivePlans()->currentDay() == 90) {
-                DailyCheckin::checkin();
-                Plan::getActivePlans()->hasExpired();
+            return;
+        }
+
+        DB::beginTransaction();
+
+        try {
+            // Perform the check-in
+            DailyCheckin::checkin();
+
+            // Deduct balance
+            if (!DailyCheckin::deduct()) {
+                DB::rollBack(); // Rollback transaction on failure
                 $this->dispatch('notification', [
-                    'message' => 'Congratulation you\'ve completed day 90',
-                    'type' => 'success',
+                    'message' => 'Insufficient balance',
+                    'type' => 'error',
                 ]);
-                $this->dispatch('redirect', url: route('checkins'));
-            } else {
-                DailyCheckin::checkin();
-                $this->dispatch('notification', [
-                    'message' => 'Successfully checked in',
-                    'type' => 'success',
-                ]);
+                return;
             }
+
+            // Check if it's the 90th day
+            if (Plan::getActivePlans()->currentDay() == 90) {
+                Plan::getActivePlans()->hasExpired();
+
+                $this->dispatch('notification', [
+                    'message' => 'Congratulations, you\'ve completed day 90',
+                    'type' => 'success',
+                ]);
+
+                DB::commit(); // Commit transaction
+                $this->dispatch('redirect', url: route('checkins'));
+                return;
+            }
+
+            DB::commit(); // Commit transaction if all operations are successful
+
+            // Success notification for regular check-in
+            $this->dispatch('notification', [
+                'message' => 'Successfully checked in',
+                'type' => 'success',
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack(); // Rollback transaction on exception
+            $this->dispatch('notification', [
+                'message' => 'An error occurred during check-in. Please try again.',
+                'type' => 'error',
+            ]);
         }
     }
 

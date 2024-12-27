@@ -9,7 +9,7 @@ class Plan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'plan', 'status', 'start_date', 'end_date'];
+    protected $fillable = ['user_id', 'plan', 'amount', 'status', 'start_date', 'end_date'];
 
     public function user()
     {
@@ -62,6 +62,7 @@ class Plan extends Model
     {
         auth()->user()->plans()->create([
             'plan' => $plan,
+            'amount' => $plan === 1 ? 500 : 1000,
             'start_date' => now(),
             'end_date' => now()->addDays(90),
         ]);
