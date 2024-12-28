@@ -1,5 +1,5 @@
 <div>
-    <div class="card bg-base-100 w-80vw shadow-xl">
+    <div class="card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg">
         <div class="card-body">
             <h2 class="card-title flex flex-row justify-between mb-2">
                 Checkin

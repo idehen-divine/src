@@ -168,4 +168,82 @@ class DailyCheckin extends Model
 
         return $longestStreak;
     }
+
+    public static function getMissedDays()
+    {
+        $firstCheckin = self::where('user_id', auth()->user()->id)
+            ->where('plan_id', auth()->user()->plans->id)
+            ->orderBy('checked_in_at')
+            ->first();
+
+        // If the user has never checked in, use today as the starting point
+        $startDate = $firstCheckin ? Carbon::parse($firstCheckin->checked_in_at)->format('Y-m-d') : now()->format('Y-m-d');
+
+        // Generate 90 days starting from the start date (including the start day)
+        $allDays = collect(range(0, 89))->map(function ($day) use ($startDate) {
+            return Carbon::parse($startDate)->addDays($day)->format('Y-m-d');
+        });
+
+        // Get the check-in dates for the user in 'Y-m-d' format
+        $checkins = self::where('user_id', auth()->user()->id)
+            ->where('plan_id', auth()->user()->plans->id)
+            ->whereDate('checked_in_at', '>=', $startDate)
+            ->orderBy('checked_in_at')
+            ->get();
+
+        // Convert check-in dates to an array of 'Y-m-d' format
+        $checkinDates = $checkins->pluck('checked_in_at')->map(function ($date) {
+            return Carbon::parse($date)->format('Y-m-d');
+        })->toArray();
+
+        // Map each day to its status and count missed days
+        $missedDays = $allDays->filter(function ($day) use ($checkinDates) {
+            return !in_array($day, $checkinDates) && $day <= today()->format('Y-m-d');
+        });
+
+        return $missedDays->count();
+    }
+
+    public static function getCheckedDays()
+    {
+        // Get the first check-in date, if it exists, otherwise use today
+        $firstCheckin = self::where('user_id', auth()->user()->id)
+            ->where('plan_id', auth()->user()->plans->id)
+            ->orderBy('checked_in_at')
+            ->first();
+
+        // If the user has never checked in, use today as the starting point
+        $startDate = $firstCheckin ? Carbon::parse($firstCheckin->checked_in_at)->format('Y-m-d') : now()->format('Y-m-d');
+
+        // Generate 90 days starting from the start date (including the start day)
+        $allDays = collect(range(0, 89))->map(function ($day) use ($startDate) {
+            return Carbon::parse($startDate)->addDays($day)->format('Y-m-d');
+        });
+
+        // Get the check-in dates for the user in 'Y-m-d' format
+        $checkins = self::where('user_id', auth()->user()->id)
+            ->where('plan_id', auth()->user()->plans->id)
+            ->whereDate('checked_in_at', '>=', $startDate)
+            ->orderBy('checked_in_at')
+            ->get();
+
+        // Convert check-in dates to an array of 'Y-m-d' format
+        $checkinDates = $checkins->pluck('checked_in_at')->map(function ($date) {
+            return Carbon::parse($date)->format('Y-m-d');
+        })->toArray();
+
+        // Filter out the 'missed' days to get only 'checked' days
+        $checkedDays = $allDays->filter(function ($day) use ($checkinDates) {
+            return in_array($day, $checkinDates) && $day <= today()->format('Y-m-d');
+        });
+
+        return $checkedDays->count();
+    }
+
+    public static function getRemainingDays()
+    {
+        // Calculate the remaining days by subtracting checked days from 90
+        return 89 - self::getCheckedDays();
+    }
+
 }
