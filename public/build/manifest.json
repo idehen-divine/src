@@ -39,5 +39,11 @@
       "assets/boxicons-EIQNrSje.ttf",
       "assets/boxicons-Dp7W9qN3.svg"
     ]
+  },
+  "resources/js/user-dashboard.js": {
+    "file": "assets/user-dashboard-DG54cbg4.js",
+    "name": "user-dashboard",
+    "src": "resources/js/user-dashboard.js",
+    "isEntry": true
   }
 }
