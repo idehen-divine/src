@@ -47,6 +47,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'forceVerif
 
         Route::controller(UserController::class)->middleware('user')->group(function () {
             Route::get('/checkins', 'checkins')->name('checkins');
+            Route::get('/wallet', 'wallet')->name('wallet');
             Route::get('/transactions', 'transactions')->name('transactions');
         });
     });

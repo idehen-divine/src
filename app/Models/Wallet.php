@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Wallet extends Model
 {
@@ -28,5 +29,20 @@ class Wallet extends Model
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public static function deduct($amount)
+    {
+        $balance = auth()->user()->wallet->balance;
+        if ($balance > $amount) {
+            auth()->user()->wallet->decrement('balance', $amount);
+            return auth()->user()->transactions()->create([
+                'transaction_reference' => 'trx_' . Str::random(12),
+                'amount' => $amount,
+                'transaction_type' => 'debit',
+                'description' => 'Withdraw to bank',
+            ]);
+        }
+        return false;
     }
 }

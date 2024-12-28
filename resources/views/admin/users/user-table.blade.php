@@ -6,7 +6,7 @@
 
                 <label class="input input-sm input-bordered flex items-center gap-2 p-2 sm:p-3 lg:p-4 w-full max-w-xs">
                     <input wire:model.live.debounce.300ms="search" type="search"
-                        class="input-xs border-none focus:outline-none bg-transparent w-full text-xs"
+                        class="input-xs border-none focus:outline-none focus:ring-0 focus:border-none bg-transparent w-full text-xs"
                         placeholder="Search" />
                     <i class="bx bx-search text-base opacity-75"></i>
                 </label>

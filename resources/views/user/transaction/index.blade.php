@@ -1,17 +1,16 @@
-<x-app-layout title="Dashboard">
+<x-app-layout title="Plans">
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-white leading-tight">
             <div class="breadcrumbs text-sm">
                 <ul>
-                    <li>Dashboard</li>
+                    <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                    <li>Transactions</li>
                 </ul>
             </div>
         </h2>
     </x-slot>
 
-    @if (helpers()->isAdmin())
-        <livewire:admin.dashboard.dashboard />
-    @elseif (helpers()->isUser())
-        <livewire:user.dashboard.dashboard />
-    @endif
+    <livewire:user.transaction.transaction />
+
 </x-app-layout>

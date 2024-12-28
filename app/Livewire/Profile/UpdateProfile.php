@@ -53,9 +53,14 @@ class UpdateProfile extends Component
         $user->updated_at = now();
         $user->profile_updated_at = now();
         $user->save();
+        Paystack::customer()->create();
         Paystack::account()->create();
 
-        return redirect(route('dashboard'));
+        $this->dispatch('notification', [
+            'message' => 'Profile updated successfully',
+            'type' => 'success',
+        ]);
+        $this->dispatch('redirect', url: route('dashboard'));
     }
 
     public function updatedState()

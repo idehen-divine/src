@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DailyCheckin extends Model
 {
@@ -33,11 +34,23 @@ class DailyCheckin extends Model
     {
         $amount = auth()->user()->plans->amount;
         $balance = auth()->user()->wallet->balance;
-        if ($balance >= $amount) {
+        if ($balance > $amount) {
             auth()->user()->wallet->decrement('balance', $amount);
             return true;
         }
         return false;
+    }
+
+    public static function transaction()
+    {
+        auth()->user()->transactions()->create([
+            'transaction_reference' => 'dci_' . Str::random(12),
+            'amount' => auth()->user()->plans->amount,
+            'transaction_type' => 'debit',
+            'status' => 'successful',
+            'description' => 'Daily check-in',
+            'processed_at' => now(),
+        ]);
     }
 
     public static function getTodayCheckin()

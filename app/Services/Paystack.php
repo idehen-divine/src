@@ -8,6 +8,7 @@ class Paystack
 {
     protected static $customer;
     protected static $account;
+    protected static $bank;
 
     public static function customer()
     {
@@ -25,5 +26,11 @@ class Paystack
         return self::$account;
     }
 
-
+    public static function bank()
+    {
+        if (self::$bank === null) {
+            self::$bank = new PaystackBank();
+        }
+        return self::$bank;
+    }
 }

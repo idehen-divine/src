@@ -41,4 +41,14 @@ class UserController extends Controller
             'activePlan' => $activePlan,
         ]);
     }
+
+    public function wallet()
+    {
+        return view('user.wallet.index');
+    }
+
+    public function transactions()
+    {
+        return view('user.transaction.index');
+    }
 }

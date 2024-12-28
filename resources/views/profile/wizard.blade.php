@@ -136,7 +136,7 @@
 
             <!-- Navigation Buttons -->
             <div class="flex gap-4 mt-5 w-full justify-between items-center">
-                <button type="button" id="prevBtn" x-on:click="step--;" :disabled="step === 1"
+                <button type="button" id="prevBtn" x-on:click="step--;" :disabled="step === 1" wire:loading.attr="disabled"
                     class="btn btn-primary w-[120px] hover:bg-transparent hover:border-2 text-white hover:text-primary z-10">Previous</button>
                 <button type="button" id="nextBtn"
                     class="btn btn-primary w-[120px] hover:bg-transparent hover:border-2 text-white hover:text-primary z-10"
@@ -151,10 +151,10 @@
                                 });
                                 if (valid) step++;
                             "
-                    x-show="!(step === steps)">Next</button>
+                    wire:loading.attr="disabled" x-show="!(step === steps)">Next</button>
                 <button type="button" id="submitBtn" x-show="(step === steps)"
                     class="btn btn-primary w-[120px] hover:bg-transparent hover:border-2 text-white hover:text-primary z-10"
-                    wire:click="update">Update</button>
+                    wire:loading.attr="disabled" wire:click="update">Update</button>
             </div>
 
             <!-- Background Shapes -->
@@ -163,4 +163,6 @@
             </div>
         </form>
     </div>
+
+    <x-livewire-extras />
 </div>

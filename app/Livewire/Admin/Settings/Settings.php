@@ -26,7 +26,6 @@ class Settings extends Component
 
     public function save()
     {
-        // Manually validate using Validator::make
         $validator = Validator::make([
             'app_name' => $this->app_name,
             'app_description' => $this->app_description,

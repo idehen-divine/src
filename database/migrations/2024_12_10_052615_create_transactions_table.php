@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
             $table->string('transaction_reference')->unique();
             $table->decimal('amount', 15, 2);

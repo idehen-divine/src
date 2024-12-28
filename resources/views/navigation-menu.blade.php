@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    @if (helpers()->isAdmin() || helpers()->isManager())
+                    @if (helpers()->isAdmin())
                         <x-nav-link href="{{ route('users') }}" :active="$activePage === 'users'">
                             {{ __('Users') }}
                         </x-nav-link>
@@ -33,6 +33,9 @@
                         <x-nav-link href="{{ route('checkins') }}" :active="$activePage === 'checkins'">
                             {{ __('Checkins') }}
                         </x-nav-link>
+                        <x-nav-link href="{{ route('transactions') }}" :active="$activePage === 'transactions'">
+                            {{ __('Transactions') }}
+                        </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -43,13 +46,13 @@
                     <div class="hidden sm:-my-px sm:ms-10 sm:flex">
                         <!-- Button -->
                         <div class="relative">
-                            <button
+                            <a href="{{ route('wallet') }}"
                                 class="flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-400 rounded-lg shadow-lg text-white">
                                 <i class='bx bx-wallet text-xl'></i>
                                 <span class="font-semibold" wire:poll.visable.5s>
                                     {{ settings()->getValue('app_currency_logo', '$') . $balance }}
                                 </span>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 @endif
@@ -114,14 +117,15 @@
                 @if (helpers()->isUser())
                     <div class="flex">
                         <!-- Button -->
-                        {{-- <div class="relative">
-                            <span
-                                class="flex items-center gap-1 px-2 py-1 text-gray-200 bg-red-600 hover:bg-red-700 rounded-lg shadow-lg">
-                                <i class='bx bx-wallet text-base'></i>
-                                <span class="text-sm"
-                                    wire:poll.visable.5s>{{ settings()->getValue('app_currency_logo', '$') . $balance }}</span>
-                            </span>
-                        </div> --}}
+                        <div class="relative">
+                            <a href="{{ route('wallet') }}"
+                                class="flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-400 rounded-lg shadow-lg text-white">
+                                <i class='bx bx-wallet text-xl'></i>
+                                <span class="font-semibold" wire:poll.visable.5s>
+                                    {{ settings()->getValue('app_currency_logo', '$') . $balance }}
+                                </span>
+                            </a>
+                        </div>
                     </div>
                 @endif
                 <button @click="open = ! open"
@@ -149,10 +153,22 @@
                 <x-responsive-nav-link href="{{ route('users') }}" :active="$activePage === 'users'">
                     {{ __('Users') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('investments') }}" :active="$activePage === 'investments'">
+                    {{ __('Investments') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link href="{{ route('transaction') }}" :active="$activePage === 'transaction'">
                     {{ __('Transactions') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('settings') }}" :active="$activePage === 'settings'">
+                    {{ __('Settings') }}
+                </x-responsive-nav-link>
             @elseif (helpers()->isUser())
+                <x-responsive-nav-link href="{{ route('checkins') }}" :active="$activePage === 'checkins'">
+                    {{ __('Checkins') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('transactions') }}" :active="$activePage === 'transactions'">
+                    {{ __('Transactions') }}
+                </x-responsive-nav-link>
             @endif
         </div>
 

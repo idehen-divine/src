@@ -27,9 +27,9 @@ class Transaction extends Model
 
     public function scopeSearch($query, $search)
     {
-        return $query->where('reference', 'like', '%' . $search . '%')
+        return $query->where('transaction_reference', 'like', '%' . $search . '%')
             ->orWhere('amount', 'like', '%' . $search . '%')
-            ->orWhere('type', 'like', '%' . $search . '%')
+            ->orWhere('transaction_type', 'like', '%' . $search . '%')
             ->orWhere('status', 'like', '%' . $search . '%');
     }
 }
