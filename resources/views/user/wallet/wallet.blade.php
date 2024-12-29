@@ -59,7 +59,7 @@
             </x-slot>
 
             <x-slot name="content">
-                <select class="select select-bordered w-full bg-transparent" wire:model.live="bank_code">
+                <select class="select select-bordered w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg" wire:model.live="bank_code">
                     <option value="text-center">-- Bank --</option>
                     @unless ($banks === null)
                         @foreach ($banks as $bank)
@@ -68,10 +68,10 @@
                     @endunless
                 </select>
 
-                <input class="input input-bordered mt-1 w-full bg-transparent" type="number"
+                <input class="input input-bordered mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg" type="number"
                     placeholder="Account Number" wire:model.live.debounce.300ms="account_number" />
 
-                <input class="input input-bordered mt-1 w-full bg-transparent" type="text" placeholder="Account Name"
+                <input class="input input-bordered mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg" type="text" placeholder="Account Name"
                     wire:model="account_name" />
             </x-slot>
 

@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Users;
 use App\Models\User;
 use Livewire\Component;
 use App\Livewire\DataTable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Jetstream\Jetstream;
 
 class UserTable extends Component
@@ -26,7 +27,7 @@ class UserTable extends Component
     public function wallet($id)
     {
         $this->user = User::find($id);
-        $this->balance = $this->user->balance;
+        $this->balance = $this->user->wallet->balance;
         $this->showWalletModal = true;
     }
 
@@ -36,16 +37,59 @@ class UserTable extends Component
             'balance' => 'required|numeric',
         ]);
 
-        $this->user->balance = $this->balance;
-        $this->user->save();
+        DB::beginTransaction();
+        try {
+            $oldBalance = $this->user->wallet->balance; // Current balance
+            $newBalance = $this->balance; // New balance
+            $balanceDifference = $newBalance - $oldBalance; // Calculate difference
 
-        $this->dispatch('notification', [
-            'message' => 'User balance updated successfully!',
-            'type' => 'success',
-        ]);
+            // Determine transaction type
+            if ($balanceDifference > 0) {
+                $transactionType = 'credit';
+            } elseif ($balanceDifference < 0) {
+                $transactionType = 'debit';
+            } else {
+                $transactionType = 'unchanged';
+            }
+
+            // Handle unchanged balance
+            if ($transactionType === 'unchanged') {
+                $this->dispatch('notification', [
+                    'message' => 'No changes made to the user balance.',
+                    'type' => 'info',
+                ]);
+                return;
+            }
+
+            // Perform wallet update
+            if ($transactionType === 'credit') {
+                $this->user->wallet->deposit(abs($balanceDifference), 'Admin wallet update');
+            } elseif ($transactionType === 'debit') {
+                $this->user->wallet->withdraw(abs($balanceDifference), 'Admin wallet update');
+            }
+
+            DB::commit();
+
+            // Dispatch success notification
+            $this->dispatch('notification', [
+                'message' => 'User balance updated successfully! Amount ' .
+                ($transactionType === 'credit' ? 'added: ' : 'deducted: ') .
+                abs($balanceDifference),
+                'type' => 'success',
+            ]);
+        } catch (\Exception $th) {
+            DB::rollBack();
+
+            // Dispatch error notification
+            $this->dispatch('notification', [
+                'message' => 'User balance update failed: ' . $th->getMessage(),
+                'type' => 'error',
+            ]);
+        }
 
         $this->showWalletModal = false;
     }
+
 
     public function showUser($id)
     {
@@ -68,7 +112,9 @@ class UserTable extends Component
 
     public function render()
     {
-        return view('admin.users.user-table', [
+        return view(
+            'admin.users.user-table',
+            [
                 'users' => $this->getUsers(),
             ]
         );

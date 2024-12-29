@@ -1,6 +1,6 @@
 <div>
     <x-validation-errors />
-    <div class="card bg-base-100 w-80vw h-50vh shadow-xl">
+    <div class="card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg">
         <div class="card-body">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <div class="">
@@ -30,13 +30,12 @@
                     <div class="mb-3">
                         <x-label for="app_phone" :value="__('Telephone Number')" />
                         <label
-                            class="flex items-center border border-gray-300 rounded-lg z-10 mb-3 peer-focus:border-indigo-500 peer-focus:ring peer-focus:ring-indigo-500 dark:peer-focus:border-indigo-600 dark:peer-focus:ring-indigo-600">
+                            class="flex items-center border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 peer-focus:border-indigo-500 dark:peer-focus:border-indigo-600 peer-focus:ring-indigo-500 dark:peer-focus:ring-indigo-600 rounded-md mt-1 shadow-sm">
                             <span class="ml-2 mr-0 whitespace-nowrap">+(234)</span>
                             <input id="app_phone"
-                                class="peer ps-1 border-none outline-none focus:ring-0 focus:outline-none dark:bg-gray-900 dark:text-gray-300 block w-full"
+                                class="peer ps-1 border-none outline-none focus:ring-0 focus:outline-none dark:bg-gray-900 dark:text-gray-300 block rounded-md w-full"
                                 type="tel" wire:model="app_phone" minlength="10" maxlength="10" />
                         </label>
-
                     </div>
                     <div class="mb-3">
                         <x-label for="app_address" :value="__('Address')" />
@@ -48,7 +47,7 @@
                     <div class="mb-3">
                         <x-label for="app_timezone" :value="__('App Timezone')" />
                         <select id="timezone"
-                            class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm    "
+                            class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
                             wire:model="app_timezone">
                             <option value="Europe/London">UTC+00:00</option>
                             <option value="Africa/Lagos">UTC+01:00</option>

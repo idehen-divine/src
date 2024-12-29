@@ -1,10 +1,10 @@
 <div>
-    <div class="card bg-base-100 w-80vw h-50vh shadow-xl">
+    <div class="card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg">
         <div class="card-body">
             <h2 class="card-title flex flex-row justify-between mb-2">
                 Users
 
-                <label class="input input-sm input-bordered flex items-center gap-2 p-2 sm:p-3 lg:p-4 w-full max-w-xs">
+                <label class="input input-sm input-bordered bg-transparent flex items-center gap-2 p-2 sm:p-3 lg:p-4 w-full max-w-xs">
                     <input wire:model.live.debounce.300ms="search" type="search"
                         class="input-xs border-none focus:outline-none focus:ring-0 focus:border-none bg-transparent w-full text-xs"
                         placeholder="Search" />
@@ -20,6 +20,8 @@
                             <th>Name</th>
                             <th>UID/Email</th>
                             <th>Wallet Balance</th>
+                            <th>Current Plan</th>
+                            <th>Plan Balance</th>
                             <th>Status</th>
                             <th></th>
                         </tr>
@@ -28,7 +30,7 @@
                         @unless ($users === null || $users->isEmpty())
                             @foreach ($users as $user)
                                 <tr>
-                                    <td>
+                                    <td class="whitespace-nowrap">
                                         <div class="flex items-center gap-3">
                                             <div class="avatar">
                                                 <div class="mask mask-squircle h-12 w-12">
@@ -45,21 +47,29 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td class="whitespace-nowrap">
                                         <div>
                                             <div class="font-bold">{{ $user->uid }}</div>
                                             <div class="text-sm opacity-50">{{ $user->email }}</div>
                                         </div>
                                     </td>
-                                    <td>{{ $user->balance }}</td>
-                                    <td>
+                                    <td class="whitespace-nowrap">
+                                        {{ settings()->getValue('app_currency_logo') . $user->wallet->balance }}
+                                    </td>
+                                    <td class="whitespace-nowrap">
+                                        {{ $user->plans ? settings()->getValue('app_currency_logo') . ($user->plans->plan == 1 ? '500 Daily' : '1000 Daily') : 'N/A' }}
+                                    </td>
+                                    <td class="whitespace-nowrap">
+                                        {{ $user->plans ? settings()->getValue('app_currency_logo') . (($user->plans->dailyCheckin->count()) * ($user->plans->plan == 1 ? 500 : 1000)) : 'N/A' }}
+                                    </td>
+                                    <td class="whitespace-nowrap">
                                         @if (!$user->is_active)
-                                            <div class="badge badge-error">Inactive</div>
+                                            <div class="badge badge-error text-white">Inactive</div>
                                         @else
-                                            <div class="badge badge-success">Active</div>
+                                            <div class="badge badge-success text-white">Active</div>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="whitespace-nowrap">
                                         <div class="flex gap-2 justify-end">
                                             <div class="tooltip" data-tip="Top Up" data-tip-offset="10">
                                                 <span class="btn btn-sm btn-ghost cursor-pointer"
@@ -113,7 +123,7 @@
                             <div class="mb-3">
                                 <label class="flex align-center gap-3" for="paginate">
                                     <select wire:model.live="perPage" name="paginate" id="paginate"
-                                        class="select select-bordered">
+                                        class="select select-bordered bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg">
                                         <option value="10">10</option>
                                         <option value="25">25</option>
                                         <option value="50">50</option>
@@ -130,7 +140,9 @@
             </div>
         </div>
     </div>
+
     <x-livewire-extras />
+    <x-user-password-confirmation />
 
     @if ($showModal)
         <x-dialog-modal maxWidth="md" wire:model.live="showModal">
@@ -192,8 +204,8 @@
 
             <x-slot name="content">
                 <x-label for="balance" value="{{ __('Balance') }}" />
-                <x-input id="balance" class="block mt-1 w-full" type="number" name="balance" wire:model="balance"
-                    required autofocus autocomplete="balance" />
+                <x-input id="balance" class="block mt-1 w-full" type="number" name="balance"
+                    wire:model="balance" required autofocus autocomplete="balance" />
             </x-slot>
 
             <x-slot name="footer">

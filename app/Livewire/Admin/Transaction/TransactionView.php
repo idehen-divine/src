@@ -6,72 +6,40 @@ use App\Models\User;
 use Livewire\Component;
 use App\Livewire\DataTable;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\DB;
 
 class TransactionView extends Component
 {
     use DataTable;
 
-    public $showDebitModal = false;
-    public $showCreditModal = false;
-    public $details;
-
-    public function showTransaction($id)
+    public function decline($id)
     {
-        $this->toggletransactionModal();
-        $transaction = Transaction::find($id);
-        if ($transaction->type == 'debit') {
-            $this->showDebitModal = true;
-        } else {
-            $transaction->photo_url = $this->transactionPhotoUrl($transaction->photo_path);
-            // dd($transaction->photo_url);
-            $this->showCreditModal = true;
-
-        }
-        $this->details = $transaction;
-    }
-
-    public function toggletransactionModal()
-    {
-        $this->showDebitModal = false;
-        $this->showCreditModal = false;
-        $this->details = null;
-    }
-
-    public function fail()
-    {
-        Transaction::find($this->details->id)->update(['status' => 'failed']);
-        $this->dispatch('notification', [
-            'message' => 'Transaction updated successfully!',
-            'type' => 'success',
-        ]);
-        $this->toggletransactionModal();
-    }
-
-    public function accept()
-    {
-        $transaction = Transaction::find($this->details->id);
-        if ($transaction->type == 'debit') {
-            $user = User::find($transaction->user_id);
-            $user->balance = $user->balance - $transaction->amount;
-            $user->save();
-            $transaction->status = 'completed';
+        DB::beginTransaction();
+        try {
+            $transaction = Transaction::find($id);
+            $transaction->status = 'failed';
+            $transaction->processed_at = now();
             $transaction->save();
-        } else {
-            $user = User::find($transaction->user_id);
-            $user->balance = $user->balance + $transaction->amount;
-            $user->save();
-            $transaction->status = 'completed';
-            $transaction->save();
+            $user = $transaction->user;
+            $user->wallet->balance += $transaction->amount;
+            $user->wallet->save();
+
+            DB::commit();
+            $this->dispatch('notification', [
+                'message' => 'Transaction declined successfully',
+                'type' => 'success'
+            ]);
+        } catch (\Exception $th) {
+            DB::rollBack();
+            $this->dispatch('notification', [
+                'message' => 'Transaction declined failed' . $th->getMessage(),
+                'type' => 'error'
+            ]);
         }
-        $this->toggletransactionModal();
-        $this->dispatch('notification', [
-            'message' => 'Transaction updated successfully!',
-            'type' => 'success',
-        ]);
-        $this->dispatch('notification', [
-            'message' => 'User balance updated successfully!',
-            'type' => 'success',
-        ]);
+    }
+
+    public function accept($id)
+    {
     }
 
     public function render()
@@ -89,11 +57,7 @@ class TransactionView extends Component
         return Transaction::where('status', '!=', 'pending')
             ->search($this->search)
             ->orderBy($this->column, $this->direction)
-            ->paginate($this->perPage)
-            ->through(function ($game) {
-                $game->photo_url = $this->transactionPhotoUrl($game->photo_path);
-                return $game;
-            });
+            ->paginate($this->perPage);
     }
 
     public function getPendingTransactions()
@@ -101,15 +65,6 @@ class TransactionView extends Component
         return Transaction::where('status', 'pending')
             ->search($this->search)
             ->orderBy($this->column, $this->direction)
-            ->paginate($this->perPage)
-            ->through(function ($transaction) {
-                $transaction->photo_url = $this->transactionPhotoUrl($transaction->photo_path);
-                return $transaction;
-            });
-    }
-
-    public function transactionPhotoUrl($photo_path)
-    {
-        return $photo_path ? asset('storage/' . $photo_path) : null;
+            ->paginate($this->perPage);
     }
 }

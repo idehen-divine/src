@@ -34,6 +34,8 @@ class Calender extends Component
             }
             
             if (Plan::getActivePlans()->currentDay() == 90) {
+                Plan::getActivePlans()->returnCapital();
+                Plan::getActivePlans()->returnInterest();
                 Plan::getActivePlans()->hasExpired();
                 $this->dispatch('notification', [
                     'message' => 'Congratulations, you\'ve completed day 90',

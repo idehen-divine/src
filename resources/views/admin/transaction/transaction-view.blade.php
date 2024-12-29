@@ -1,75 +1,75 @@
 <div>
-    <div x-data="{ activeTab: 'tab1' }" class="p-6">
+    <div x-data="{ activeTab: 'tab1' }">
         <!-- Tab Navigation -->
         <div class="flex">
-            <button :class="activeTab === 'tab1' ? 'bg-white dark:bg-gray-800' : ''" @click="activeTab = 'tab1'"
-                class="py-2 font-semibold w-2/4">
-                All Transactions
-            </button>
-            <button :class="activeTab === 'tab2' ? 'bg-white dark:bg-gray-800' : ''" @click="activeTab = 'tab2'"
-                class="py-2 font-semibold w-2/4">
-                Pending Transactions
-                @unless ($pendingTransactions === null || $pendingTransactions->isEmpty())
-                    <span class="badge bg-red-500">{{ $pendingTransactions->count() }}</span>
-                @endunless
-
-            </button>
+            <div class="w-2/4 bg-white dark:bg-gray-800 rounded-tr-lg rounded-tl-lg">
+                <button :class="activeTab === 'tab1' ? '' : 'bg-gray-100 dark:bg-gray-900 rounded-br-lg'"
+                    @click="activeTab = 'tab1'" class="py-2 font-semibold w-full">
+                    All Transactions
+                </button>
+            </div>
+            <div class="w-2/4 bg-white dark:bg-gray-800 rounded-tr-lg rounded-tl-lg">
+                <button :class="activeTab === 'tab2' ? '' : 'bg-gray-100 dark:bg-gray-900 rounded-bl-lg'"
+                    @click="activeTab = 'tab2'" class="py-2 font-semibold w-full">
+                    Pending Transactions
+                    @unless ($pendingTransactions === null || $pendingTransactions->isEmpty())
+                        <span class="badge bg-red-500">{{ $pendingTransactions->count() }}</span>
+                    @endunless
+                </button>
+            </div>
         </div>
 
         <!-- Tab Content -->
         <div wire:poll>
-            <div x-show="activeTab === 'tab1'" class="p-4 bg-white dark:bg-gray-800">
-                <div class="card bg-base-100 w-80vw h-50vh shadow-xl">
+            <div x-show="activeTab === 'tab1'"
+                class="p-4 bg-white dark:bg-gray-800 shadow-sm rounded-lg rounded-tl-none">
+                <div class="card bg-white dark:bg-gray-800 overflow-hidden">
                     <div class="card-body">
-                        <div class="overflow-x-auto w-full">
-                            <table class="table table-xs w-full">
+                        <div class="overflow-x-auto">
+                            <table class="table">
                                 <!-- head -->
                                 <thead>
                                     <tr>
-                                        <th>Type</th>
                                         <th>Ref</th>
+                                        <th>Type</th>
                                         <th>Amount</th>
                                         <th>Description</th>
                                         <th>Status</th>
-                                        <th>Created At</th>
+                                        <th>Processed At</th>
+                                        <th>Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @unless ($transactions === null || $transactions->isEmpty())
                                         @foreach ($transactions as $transaction)
                                             <tr>
-                                                <td class="whitespace-nowrap">{{ $transaction->type }}</td>
-                                                <td class="whitespace-nowrap">{{ $transaction->reference }}</td>
-                                                <td class="whitespace-nowrap">
-                                                    {{ settings()->getValue('APP_CURRENCY_LOGO', '$') . $transaction->amount }}
-                                                </td>
+                                                <td class="whitespace-nowrap">{{ $transaction->transaction_reference }}</td>
+                                                <td class="whitespace-nowrap">{{ $transaction->transaction_type }}</td>
+                                                <td class="whitespace-nowrap">{{ $transaction->amount }}</td>
                                                 <td class="whitespace-nowrap">{{ $transaction->description }}</td>
-                                                <td class="whitespace-nowrap">
-                                                    @if ($transaction->status === 'completed')
-                                                        @php
-                                                            $status = 'badge-success text-white';
-                                                        @endphp
-                                                    @elseif ($transaction->status === 'failed')
-                                                        @php
-                                                            $status = 'bg-red-600 text-white';
-                                                        @endphp
+                                                <td>
+                                                    @if ($transaction->status === 'pending')
+                                                        <div class="text-white badge badge-warning">
+                                                            {{ $transaction->status }}</div>
+                                                    @elseif ($transaction->status === 'successful')
+                                                        <div class="text-white badge badge-success">
+                                                            {{ $transaction->status }}</div>
                                                     @else
-                                                        @php
-                                                            $status = 'bg-gray-600 text-white';
-                                                        @endphp
+                                                        <div class="text-white badge badge-error">{{ $transaction->status }}
+                                                        </div>
                                                     @endif
-                                                    <span class="badge {{ $status }}">
-                                                        {{ $transaction->status }}
-                                                    </span>
                                                 </td>
                                                 <td class="whitespace-nowrap">
-                                                    {{ $transaction->created_at->diffForHumans() }}
+                                                    {{ $transaction->processed_at ? \Carbon\Carbon::parse($transaction->processed_at)->format('l, F j, Y g:i A') : '' }}
+                                                </td>
+                                                <td class="whitespace-nowrap">
+                                                    {{ $transaction->created_at ? \Carbon\Carbon::parse($transaction->created_at)->format('l, F j, Y g:i A') : '' }}
                                                 </td>
                                             </tr>
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="11" class="text-center">No Transaction Found</td>
+                                            <td colspan="7" class="text-center">No transaction history Found</td>
                                         </tr>
                                     @endunless
                                 </tbody>
@@ -80,7 +80,7 @@
                                         <div class="mb-3">
                                             <label class="flex align-center gap-3" for="paginate">
                                                 <select wire:model.live="perPage" name="paginate" id="paginate"
-                                                    class="select select-bordered select-sm w-full max-w-xs text-xs">
+                                                    class="select select-bordered bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg">
                                                     <option value="10">10</option>
                                                     <option value="25">25</option>
                                                     <option value="50">50</option>
@@ -99,70 +99,67 @@
                 </div>
             </div>
 
-            <div x-show="activeTab === 'tab2'" class="p-4 bg-white dark:bg-gray-800">
-                <div class="card bg-base-100 w-80vw h-50vh shadow-xl">
+            <div x-show="activeTab === 'tab2'"
+                class="p-4 bg-white dark:bg-gray-800 shadow-sm rounded-lg rounded-tr-none">
+                <div class="card bg-white dark:bg-gray-800 overflow-hidden">
                     <div class="card-body">
-                        <div class="overflow-x-auto w-full">
-                            <table class="table table-xs w-full">
+                        <div class="overflow-x-auto">
+                            <table class="table">
                                 <!-- head -->
                                 <thead>
                                     <tr>
-                                        <th>Type</th>
                                         <th>Ref</th>
+                                        <th>Type</th>
                                         <th>Amount</th>
                                         <th>Description</th>
                                         <th>Status</th>
-                                        <th>Created At</th>
-                                        <th></th>
+                                        <th>Processed At</th>
+                                        <th>Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @unless ($pendingTransactions === null || $pendingTransactions->isEmpty())
-                                        @foreach ($pendingTransactions as $transaction)
+                                        @foreach ($pendingTransactions as $pendingTransaction)
                                             <tr>
-                                                <td class="whitespace-nowrap">{{ $transaction->type }}</td>
-                                                <td class="whitespace-nowrap">{{ $transaction->reference }}</td>
                                                 <td class="whitespace-nowrap">
-                                                    {{ settings()->getValue('APP_CURRENCY_LOGO', '$') . $transaction->amount }}
+                                                    {{ $pendingTransaction->transaction_reference }}
                                                 </td>
-                                                <td class="whitespace-nowrap">{{ $transaction->description }}</td>
-                                                <td class="whitespace-nowrap">
-                                                    @if ($transaction->status === 'completed')
-                                                        @php
-                                                            $status = 'badge-success text-white';
-                                                        @endphp
-                                                    @elseif ($transaction->status === 'failed')
-                                                        @php
-                                                            $status = 'bg-red-600 text-white';
-                                                        @endphp
+                                                <td class="whitespace-nowrap">{{ $pendingTransaction->transaction_type }}
+                                                </td>
+                                                <td class="whitespace-nowrap">{{ $pendingTransaction->amount }}</td>
+                                                <td class="whitespace-nowrap">{{ $pendingTransaction->description }}</td>
+                                                <td>
+                                                    @if ($pendingTransaction->status === 'pending')
+                                                        <div class="text-white badge badge-warning">
+                                                            {{ $pendingTransaction->status }}</div>
+                                                    @elseif ($pendingTransaction->status === 'successful')
+                                                        <div class="text-white badge badge-success">
+                                                            {{ $pendingTransaction->status }}</div>
                                                     @else
-                                                        @php
-                                                            $status = 'bg-gray-600 text-white';
-                                                        @endphp
+                                                        <div class="text-white badge badge-error">
+                                                            {{ $pendingTransaction->status }}</div>
                                                     @endif
-                                                    <span class="badge {{ $status }}">
-                                                        {{ $transaction->status }}
-                                                    </span>
                                                 </td>
                                                 <td class="whitespace-nowrap">
-                                                    {{ $transaction->created_at->diffForHumans() }}
+                                                    {{ $pendingTransaction->created_at ? \Carbon\Carbon::parse($pendingTransaction->created_at)->format('l, F j, Y g:i A') : '' }}
                                                 </td>
                                                 <td>
-                                                    <div class="flex gap-2 justify-end">
-                                                        <div class="tooltip" data-tip="View" data-tip-offset="10">
-                                                            <span class="btn btn-sm btn-ghost cursor-pointer"
-                                                                wire:click="showTransaction('{{ $transaction->id }}')">
-                                                                <i class="bx bx-show text-primary"
-                                                                    style="font-size: 20px;"></i>
-                                                            </span>
-                                                        </div>
+                                                    <div class="flex gap-2 items-center">
+                                                        <button class="btn btn-success btn-xs text-white"
+                                                            wire:click="accept('{{ $pendingTransaction->id }}')">
+                                                            Accept
+                                                        </button>
+                                                        <button class="btn btn-error btn-xs text-white"
+                                                            wire:click="decline('{{ $pendingTransaction->id }}')">
+                                                            Decline
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="11" class="text-center">No Pending Transaction Found</td>
+                                            <td colspan="7" class="text-center">No pending transaction history Found</td>
                                         </tr>
                                     @endunless
                                 </tbody>
@@ -171,9 +168,9 @@
                                 <div class="mt-3">
                                     <div class="flex gap-2 justify-between align-center">
                                         <div class="mb-3">
-                                            <label class="flex align-center gap-3" for="paginate">
+                                            <label class="flex align-center bg-transparent gap-3" for="paginate">
                                                 <select wire:model.live="perPage" name="paginate" id="paginate"
-                                                    class="select select-bordered select-sm w-full max-w-xs text-xs">
+                                                    class="select select-bordered bg-transparent">
                                                     <option value="10">10</option>
                                                     <option value="25">25</option>
                                                     <option value="50">50</option>
@@ -193,63 +190,6 @@
             </div>
         </div>
     </div>
-
-    @if ($showDebitModal)
-        <x-dialog-modal maxWidth="md" wire:model.live="showDebitModal">
-
-            <x-slot name="title">
-                {{ __('Create Game') }}
-            </x-slot>
-
-            <x-slot name="content">
-                <p>Ref: {{ $details->reference }}</p>
-                <p>Amount: {{ $details->amount }}</p>
-                <p>Details: {{ $details->description }}</p>
-            </x-slot>
-
-            <x-slot name="footer">
-                <button
-                    class="btn btn-ghost border-1 dark:border-gray-200 border-gray-800 btn-sm uppercase text-xs text-gray-800 dark:text-gray-200"
-                    wire:click="fail"wire:loading.attr="disabled">
-                    {{ __('Failed') }}
-                </button>
-                <button class="btn btn-primary btn-sm uppercase text-xs text-gray-800 dark:text-gray-200"
-                    wire:click="accept" wire:loading.attr="disabled">
-                    {{ __('Accept') }}
-                </button>
-            </x-slot>
-        </x-dialog-modal>
-    @endif
-
-    @if ($showCreditModal)
-        <x-dialog-modal maxWidth="md" wire:model.live="showCreditModal">
-
-            <x-slot name="title">
-                {{ __('Create Game') }}
-            </x-slot>
-
-            <x-slot name="content">
-                <div class="mt-2 flex justify-center">
-                    <img wire:ignore.self src="{{ $details->photo_url }}" class="rounded-md h-40 w-40 object-cover">
-                </div>
-                <p>Ref: {{ $details->reference }}</p>
-                <p>Amount: {{ $details->amount }}</p>
-                <p>Details: {{ $details->description }}</p>
-            </x-slot>
-
-            <x-slot name="footer">
-                <button
-                    class="btn btn-ghost border-1 dark:border-gray-200 border-gray-800 btn-sm uppercase text-xs text-gray-800 dark:text-gray-200"
-                    wire:click="fail"wire:loading.attr="disabled">
-                    {{ __('Failed') }}
-                </button>
-                <button class="btn btn-primary btn-sm uppercase text-xs text-gray-800 dark:text-gray-200"
-                    wire:click="accept" wire:loading.attr="disabled">
-                    {{ __('Accept') }}
-                </button>
-            </x-slot>
-        </x-dialog-modal>
-    @endif
 
     <x-livewire-extras />
 </div>

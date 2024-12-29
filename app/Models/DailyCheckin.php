@@ -34,7 +34,7 @@ class DailyCheckin extends Model
     {
         $amount = auth()->user()->plans->amount;
         $balance = auth()->user()->wallet->balance;
-        if ($balance > $amount) {
+        if ($balance >= $amount) {
             auth()->user()->wallet->decrement('balance', $amount);
             return true;
         }

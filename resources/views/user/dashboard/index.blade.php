@@ -144,7 +144,9 @@
                     Checkin Today
                 </a>
             </div>
-            <canvas id="investmentProgressChart"></canvas>
+            @if ($plan)
+                <canvas id="investmentProgressChart"></canvas>
+            @endif
         </div>
     </div>
 

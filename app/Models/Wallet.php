@@ -31,7 +31,7 @@ class Wallet extends Model
         return $this->hasMany(Transaction::class);
     }
 
-    public static function deduct($amount)
+    public static function deduct($amount, $description = 'Withdraw to bank')
     {
         $balance = auth()->user()->wallet->balance;
         if ($balance > $amount) {
@@ -40,9 +40,40 @@ class Wallet extends Model
                 'transaction_reference' => 'trx_' . Str::random(12),
                 'amount' => $amount,
                 'transaction_type' => 'debit',
-                'description' => 'Withdraw to bank',
+                'description' => $description,
             ]);
         }
         return false;
+    }
+
+    public function deposit($amount, $description = 'Deposit from bank')
+    {
+        $this->user->wallet->increment('balance', $amount);
+        return $this->user->transactions()->create([
+            'transaction_reference' => 'adc_' . Str::random(12),
+            'amount' => $amount,
+            'status' => 'successful',
+            'processed_at' => now(),
+            'transaction_type' => 'credit',
+            'description' => $description,
+        ]);
+    }
+
+    public function withdraw($amount, $description = 'Withraw from wallet')
+    {
+        $balance = $this->user->wallet->balance;
+        if ($balance >= $amount) {
+            $this->user->wallet->decrement('balance', $amount);
+            return $this->user->transactions()->create([
+                'transaction_reference' => 'adb_' . Str::random(12),
+                'amount' => $amount,
+                'status' => 'successful',
+                'processed_at' => now(),
+                'transaction_type' => 'debit',
+                'description' => $description,
+            ]);
+        }
+
+        throw new \Exception('Insufficient balance for the requested withdrawal.');
     }
 }

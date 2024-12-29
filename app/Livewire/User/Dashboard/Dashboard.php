@@ -3,12 +3,14 @@
 namespace App\Livewire\User\Dashboard;
 
 use App\Models\DailyCheckin;
+use App\Models\Plan;
 use Livewire\Component;
 
 class Dashboard extends Component
 {
     public $wallet;
     public $bank;
+    public $plan;
     public $missedDays;
     public $checkedDays;
     public $remainingDays;
@@ -17,6 +19,7 @@ class Dashboard extends Component
     {
         $this->wallet = auth()->user()->wallet;
         $this->bank = auth()->user()->bank;
+        $this->plan = Plan::getActivePlans();
         $this->getMissedDays();
         $this->checkedDays();
         $this->remainingDays();
@@ -24,17 +27,17 @@ class Dashboard extends Component
 
     public function getMissedDays()
     {
-        $this->missedDays = DailyCheckin::getMissedDays();
+        $this->missedDays = Plan::getActivePlans() ? DailyCheckin::getMissedDays() : 0;
     }
 
     public function checkedDays()
     {
-        $this->checkedDays = DailyCheckin::getCheckedDays();
+        $this->checkedDays = Plan::getActivePlans() ? DailyCheckin::getCheckedDays() : 0;
     }
 
     public function remainingDays()
     {
-        $this->remainingDays = DailyCheckin::getRemainingDays();
+        $this->remainingDays = Plan::getActivePlans() ? DailyCheckin::getRemainingDays() : 0;
     }
 
     public function render()

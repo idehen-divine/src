@@ -3,7 +3,8 @@
         <div class="card-body">
             <h2 class="card-title flex flex-row justify-between mb-2">
                 Transactions
-                <label class="input input-sm input-bordered bg-transparent flex items-center gap-2 p-2 sm:p-3 lg:p-4 w-full max-w-xs">
+                <label
+                    class="input input-sm input-bordered bg-transparent flex items-center gap-2 p-2 sm:p-3 lg:p-4 w-full max-w-xs">
                     <input wire:model.live.debounce.300ms="search" type="search"
                         class="input-xs border-none focus:outline-none focus:ring-0 focus:border-none bg-transparent w-full text-xs"
                         placeholder="Search" />
@@ -42,8 +43,12 @@
                                             <div class="text-white badge badge-error">{{ $transaction->status }}</div>
                                         @endif
                                     </td>
-                                    <td class="whitespace-nowrap">{{ $transaction->processed_at }}</td>
-                                    <td class="whitespace-nowrap">{{ $transaction->created_at }}</td>
+                                    <td class="whitespace-nowrap">
+                                        {{ $transaction->processed_at ? \Carbon\Carbon::parse($transaction->processed_at)->format('l, F j, Y g:i A') : '' }}
+                                    </td>
+                                    <td class="whitespace-nowrap">
+                                        {{ $transaction->created_at ? \Carbon\Carbon::parse($transaction->created_at)->format('l, F j, Y g:i A') : '' }}
+                                    </td>
                                 </tr>
                             @endforeach
                         @else
@@ -57,9 +62,9 @@
                     <div class="mt-3">
                         <div class="flex gap-2 justify-between align-center">
                             <div class="mb-3">
-                                <label class="flex align-center bg-transparent gap-3" for="paginate">
+                                <label class="flex align-center gap-3" for="paginate">
                                     <select wire:model.live="perPage" name="paginate" id="paginate"
-                                        class="select select-bordered bg-transparent">
+                                        class="select select-bordered bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg">
                                         <option value="10">10</option>
                                         <option value="25">25</option>
                                         <option value="50">50</option>
