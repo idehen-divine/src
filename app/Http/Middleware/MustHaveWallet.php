@@ -41,6 +41,6 @@ class MustHaveWallet
             }
         }
 
-        return $next($request);
+        return redirect()->route('dashboard');
     }
 }

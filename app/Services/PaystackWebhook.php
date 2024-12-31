@@ -28,7 +28,7 @@ class PaystackWebhook
         $data = $request->input();
 
         if ($data['event'] == 'charge.success') {
-            $accountNumber = $data['data']['metadata']['account_number'] ?? null;
+            $accountNumber = $data['data']['metadata']['receiver_account_number'] ?? null;
 
             if ($accountNumber) {
                 $wallet = Wallet::where('account_number', $accountNumber)->first();
@@ -38,7 +38,6 @@ class PaystackWebhook
                     $amount = $data['data']['amount'] / 100; // Convert kobo to naira
                     $reference = $data['data']['reference'];
                     $status = $data['data']['status'];
-                    Log::info('Webhook processing started: ' . $data);
 
                     try {
                         DB::transaction(function () use ($wallet, $user, $reference, $amount, $status) {
@@ -50,12 +49,11 @@ class PaystackWebhook
                                 'transaction_type' => 'credit',
                                 'description' => 'Deposit from Bank',
                                 'processed_at' => now(),
-                                'status' => $status,
+                                'status' => 'successful',
                             ]);
 
-                            $wallet->update([
-                                'balance' => $wallet->balance + $amount,
-                            ]);
+                            $wallet->balance = $wallet->balance + $amount;
+                            $wallet->save();
                         });
 
                         return response()->json(['status' => 'success']);
