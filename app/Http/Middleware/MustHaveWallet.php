@@ -39,8 +39,9 @@ class MustHaveWallet
                 Log::error('Error creating customer or account: ' . $e->getMessage());
                 return abort(500, 'An Error Occurred. Please try reloading the page.');
             }
+            return redirect()->route('dashboard');
         }
 
-        return redirect()->route('dashboard');
+        return $next($request);
     }
 }
