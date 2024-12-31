@@ -92,7 +92,7 @@
         <x-dialog-modal maxWidth="md" wire:model.live="showWithdrawalModal">
 
             <x-slot name="title">
-                {{ __('Add/Update bannk details') }}
+                {{ __('Withdraw to Bank') }}
             </x-slot>
 
             <x-slot name="content">
