@@ -54,7 +54,7 @@
                                         </div>
                                     </td>
                                     <td class="whitespace-nowrap">
-                                        {{ settings()->getValue('app_currency_logo') . $user->wallet->balance }}
+                                        {{ settings()->getValue('app_currency_logo') . ($user->wallet ? $user->wallet->balance : 0.00) }}
                                     </td>
                                     <td class="whitespace-nowrap">
                                         {{ $user->plans ? settings()->getValue('app_currency_logo') . ($user->plans->plan == 1 ? '500 Daily' : '1000 Daily') : 'N/A' }}

@@ -30,7 +30,7 @@ class NavigationMenu extends Component
     public function render()
     {
         return view('navigation-menu', [
-            'balance' =>  auth()->user()->wallet->balance,
+            'balance' =>  auth()->user()->wallet ? auth()->user()->wallet->balance : 0.00,
         ]);
     }
 }
