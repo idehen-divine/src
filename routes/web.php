@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
-use App\Http\Controllers\PaystackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +15,6 @@ use App\Http\Controllers\PaystackController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::post('/webhook/paystack', [PaystackController::class, 'webhook'])->name('webhook.paystack');
 
 Route::controller(GuestController::class)->group(function () {
     Route::get('/', 'homePage')->name('home');
