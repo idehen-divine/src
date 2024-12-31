@@ -22,6 +22,7 @@ class PaystackWebhook
         $payload = $request->getContent();
         
         if (!hash_equals($signature, hash_hmac('sha512', $payload, $this->paystackSecretKey))) {
+            Log::error('Invalid signature');
             return response()->json(['error' => 'Invalid signature'], 400);
         }
 
