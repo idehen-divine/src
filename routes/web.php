@@ -33,7 +33,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'forceVerif
     Route::post('/user/email/update', [UserController::class, 'updateEmail'])->middleware('isupdated')->withoutMiddleware('forceVerification');
     Route::get('/user/profile/update', [UserController::class, 'updateProfile'])->middleware('isupdated')->name('profile.update');
 
-    Route::middleware('updated')->group(function () {
+    Route::middleware(['updated', 'mustHaveWallet'])->group(function () {
 
         Route::get('/dashboard', function () {
             return view('dashboard');
@@ -54,8 +54,4 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'forceVerif
             Route::get('/transactions', 'transactions')->name('transactions');
         });
     });
-
-    // Route::get('/user/profile', function () {
-    //     return abort(404);
-    // });
 });

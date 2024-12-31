@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'forceVerification' => \App\Http\Middleware\ForceEmailVerification::class,
         'updated' => \App\Http\Middleware\UpdateProfile::class,
         'isupdated' => \App\Http\Middleware\HasUpdatedProfile::class,
+        'mustHaveWallet' => \App\Http\Middleware\MustHaveWallet::class,
     ];
 }
