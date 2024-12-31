@@ -5,7 +5,7 @@ namespace App\Livewire\Profile;
 use App\Models\User;
 use Livewire\Component;
 use App\Helpers\Helpers;
-use App\Jobs\DedicatedVirtualAccountJob;
+use App\Models\Wallet;
 use App\Services\Paystack;
 
 class UpdateProfile extends Component
@@ -53,6 +53,9 @@ class UpdateProfile extends Component
         $user->updated_at = now();
         $user->profile_updated_at = now();
         $user->save();
+        $wallet = new Wallet();
+        $wallet->user_id = auth()->user()->id;
+        $wallet->save();
         Paystack::customer()->create();
         Paystack::account()->create();
 
