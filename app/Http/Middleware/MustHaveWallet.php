@@ -31,7 +31,7 @@ class MustHaveWallet
     {
         $user = auth()->user();
 
-        if (!$user->wallet) {
+        if (!$user->wallet->account_number) {
             try {
                 $this->paystack->customer()->create();
                 $this->paystack->account()->create();
