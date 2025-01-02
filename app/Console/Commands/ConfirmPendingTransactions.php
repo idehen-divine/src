@@ -14,7 +14,7 @@ class ConfirmPendingTransactions extends Command
      *
      * @var string
      */
-    protected $signature = 'transactions:cofirm';
+    protected $signature = 'transactions:confirm';
 
     /**
      * The console command description.
