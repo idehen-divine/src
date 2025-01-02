@@ -13,7 +13,7 @@
                     @click="activeTab = 'tab2'" class="py-2 font-semibold w-full">
                     Pending Transactions
                     @unless ($pendingTransactions === null || $pendingTransactions->isEmpty())
-                        <span class="badge bg-red-500">{{ $pendingTransactions->count() }}</span>
+                        <span class="badge badge-error p-0 ms-1 h-4 w-4 text-white text-xs rounded-full">{{ $pendingTransactions->count() }}</span>
                     @endunless
                 </button>
             </div>
@@ -53,6 +53,9 @@
                                                             {{ $transaction->status }}</div>
                                                     @elseif ($transaction->status === 'successful')
                                                         <div class="text-white badge badge-success">
+                                                            {{ $transaction->status }}</div>
+                                                    @elseif ($transaction->status === 'processing')
+                                                        <div class="text-white badge bg-blue-500">
                                                             {{ $transaction->status }}</div>
                                                     @else
                                                         <div class="text-white badge badge-error">{{ $transaction->status }}

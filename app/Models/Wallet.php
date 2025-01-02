@@ -37,7 +37,7 @@ class Wallet extends Model
         if ($balance > $amount) {
             auth()->user()->wallet->decrement('balance', $amount);
             return auth()->user()->transactions()->create([
-                'transaction_reference' => 'trx_' . Str::random(12),
+                'transaction_reference' => 'trx_' . Str::random(16),
                 'amount' => $amount,
                 'transaction_type' => 'debit',
                 'description' => $description,

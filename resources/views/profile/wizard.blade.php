@@ -54,7 +54,7 @@
                     <i class="bx bx-user-circle text-gray-700 dark:text-gray-300 opacity-75"
                         style="font-size: 1.5rem"></i>
                     <input class="grow border-none focus:border-none focus:outline-none focus:ring-0" type="text"
-                        name="middle_name" placeholder="Middle Name" wire:model="middle_name" required
+                        name="middle_name" placeholder="Middle Name (optional)" wire:model="middle_name"
                         autocomplete="middle_name" />
                 </label>
             </div>
@@ -97,7 +97,7 @@
             <!-- Step 4 -->
             <div class="relative z-10" x-show="step === 4">
                 <p>Nationality</p>
-                <select class="select select-bordered w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg" name="nationality" wire:model="nationality">
+                <select class="select select-bordered w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg mb-3" name="nationality" wire:model="nationality">
                     <option value="">-- Nationalities --</option>
                     @unless ($nationalities === null || $nationalities->isEmpty())
                         @foreach ($nationalities as $nations)
@@ -108,7 +108,7 @@
 
                 <p>Residential Address</p>
 
-                <select class="select select-bordered w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg" name="state" wire:model.live="state">
+                <select class="select select-bordered w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg mb-3" name="state" wire:model.live="state">
                     <option value="">-- States --</option>
                     @unless ($states === null || $states->isEmpty())
                         @foreach ($states as $state)
@@ -117,7 +117,7 @@
                     @endunless
                 </select>
 
-                <select class="select select-bordered w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg" name="lga" wire:model="lga">
+                <select class="select select-bordered w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg mb-3" name="lga" wire:model="lga">
                     <option value="">-- Lgas --</option>
                     @unless ($lgas === null || $lgas->isEmpty())
                         @foreach ($lgas as $lga)

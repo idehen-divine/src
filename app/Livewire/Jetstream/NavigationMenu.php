@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Jetstream;
 
+use App\Models\Transaction;
 use Livewire\Component;
 
 class NavigationMenu extends Component
@@ -31,6 +32,12 @@ class NavigationMenu extends Component
     {
         return view('navigation-menu', [
             'balance' =>  auth()->user()->wallet ? auth()->user()->wallet->balance : 0.00,
+            'pendingTransactions' => $this->getPendingTransactions(),
         ]);
+    }
+
+    public function getPendingTransactions()
+    {
+        return Transaction::where('status', 'pending')->count();
     }
 }

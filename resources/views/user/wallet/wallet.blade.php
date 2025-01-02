@@ -72,7 +72,7 @@
                     placeholder="Account Number" wire:model.live.debounce.300ms="account_number" />
 
                 <input class="input input-bordered mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg" type="text" placeholder="Account Name"
-                    wire:model="account_name" />
+                    disabled wire:model="account_name" />
             </x-slot>
 
             <x-slot name="footer">

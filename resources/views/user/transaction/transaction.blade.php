@@ -39,6 +39,8 @@
                                             <div class="text-white badge badge-warning">{{ $transaction->status }}</div>
                                         @elseif ($transaction->status === 'successful')
                                             <div class="text-white badge badge-success">{{ $transaction->status }}</div>
+                                        @elseif ($transaction->status === 'processing')
+                                                        <div class="text-white badge bg-blue-500">{{ $transaction->status }}</div>
                                         @else
                                             <div class="text-white badge badge-error">{{ $transaction->status }}</div>
                                         @endif

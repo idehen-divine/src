@@ -32,6 +32,13 @@ class Wallet extends Component
 
     public function showingWithdrawalModal()
     {
+        if (!$this->bank) {
+            $this->dispatch('notification', [
+                'message' => 'You must add a bank account before you can withdraw',
+                'type' => 'error',
+            ]);
+            return;
+        }
         $this->showWithdrawalModal = true;
         $this->amount = null;
     }

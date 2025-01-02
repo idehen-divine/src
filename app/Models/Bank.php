@@ -15,6 +15,7 @@ class Bank extends Model
         'account_number',
         'bank_name',
         'bank_code',
+        'recipient_code',
         'country_code',
     ];
 

@@ -24,7 +24,7 @@
                             {{ __('Investments') }}
                         </x-nav-link>
                         <x-nav-link href="{{ route('transaction') }}" :active="$activePage === 'transaction'">
-                            {{ __('Transactions') }}
+                            Transactions @if($pendingTransactions)<span class="badge badge-error p-0 ms-1 h-4 w-4 text-white text-xs rounded-full">{{ $pendingTransactions }}</span>@endif
                         </x-nav-link>
                         <x-nav-link href="{{ route('settings') }}" :active="$activePage === 'settings'">
                             {{ __('Settings') }}

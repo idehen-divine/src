@@ -25,10 +25,10 @@ class UpdateProfile extends Component
     public function update()
     {
         $this->validate([
-            'username' => 'required',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'middle_name' => 'required',
+            'username' => 'required|string',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'middle_name' => 'nullable|string',
             'dob' => 'required',
             'gender' => 'required|in:male,female',
             'phone_number' => 'required',

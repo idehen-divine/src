@@ -10,6 +10,7 @@ class Paystack
     protected static $customer;
     protected static $account;
     protected static $bank;
+    protected static $transfer;
     protected static $webhook;
 
     public static function customer()
@@ -34,6 +35,14 @@ class Paystack
             self::$bank = new PaystackBank();
         }
         return self::$bank;
+    }
+
+    public static function transfer()
+    {
+        if (self::$transfer === null) {
+            self::$transfer = new PaystackTransfer();
+        }
+        return self::$transfer;
     }
 
     public static function webhook()

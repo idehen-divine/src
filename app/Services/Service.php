@@ -32,6 +32,12 @@ trait Service
             ->post($this->paystackBaseUrl . $endpoint, $payload);
     }
 
+    protected function putUrl(string $endpoint, array $payload = [])
+    {
+        return Http::withToken($this->paystackSecretKey)
+            ->put($this->paystackBaseUrl . $endpoint, $payload);
+    }
+
     protected function deleteUrl(string $endpoint, array $payload = [])
     {
         return Http::withToken($this->paystackSecretKey)

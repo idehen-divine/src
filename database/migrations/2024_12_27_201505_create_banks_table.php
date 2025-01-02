@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('banks', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('user_id')->unique()->constrained()->onDelete('cascade'); 
+            $table->foreignUuid('user_id')->unique()->constrained()->onDelete('cascade');
             $table->string('account_name');
             $table->string('account_number');
             $table->string('bank_name');
             $table->string('bank_code');
-            $table->string('recipent_code')->nullable();
+            $table->string('recipient_code')->nullable();
             $table->string('country_code')->default('NG');
             $table->timestamps();
         });
