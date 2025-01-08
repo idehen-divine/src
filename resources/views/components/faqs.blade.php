@@ -1,8 +1,7 @@
 <section class="max-w-xl mx-auto pb-10 mb-4">
     <h2 class="text-lg font-bold text-center">FAQ</h2>
     <div class="w-14 h-1 bg-orange-500 mx-auto my-2"></div>
-    <p class="text-center text-gray-500 mb-8">Curae hendrerit donec commodo hendrerit egestas tempus, turpis
-        facilisis nostra nunc. Vestibulum dui eget ultrices.</p>
+    <p class="text-center text-gray-500 mb-8">Frequently Asked Questions.</p>
     <div x-data="{ open: false }" class="mb-4">
         <button @click="open = !open" class="flex justify-between w-full p-4 text-left rounded-lg">
             <span class="font-semibold">Are you a registered company?</span>
