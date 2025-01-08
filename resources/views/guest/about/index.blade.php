@@ -5,9 +5,9 @@
         <div class="w-24 h-1 bg-orange-500 mx-auto my-2"></div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mt-5">
             <div class="w-full">
-                <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 872.69856 590.1815"
-                    data-src="https://cdn.undraw.co/illustrations/team-spirit_18vw.svg" role="img"
-                    artist="Katerina Limpitsouni" source="https://undraw.co/">
+                <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 872.69856 590.1815" data-src="https://cdn.undraw.co/illustrations/team-spirit_18vw.svg"
+                    role="img" artist="Katerina Limpitsouni" source="https://undraw.co/">
                     <path
                         d="M222.38121,599.64355c-4.144,0-8.29652.17089-12.35177.51562l-.59019.04981c-26.89858,2.37792-46.57364,16.17285-45.76446,32.08984l.15643,2.87793c.10316,1.81933.21308,3.77539.30355,5.94531.049,1.07031,1.50931,1.8916,3.32639,1.8916H829.101c46.64889-.2832,93.12868-.63965,138.14059-1.05957a235.08562,235.08562,0,0,0,25.27344-1.30957c12.509-1.48047,21.19113-4.415,26.54514-8.97168h.00169c6.65785-5.65039,6.86755-12.76562,6.46506-20.80469-.82018-16.23242-1.63359-33.28515-2.44532-50.28613-.717-14.9834-1.43067-29.92676-2.14431-44.2334-.44138-8.49023-1.42221-15.98437-8.98311-21.71191-8.19505-6.19434-23.141-9.334-44.42341-9.334-.25705,0-.5124,0-.77283.001-66.69685.23731-132.7832,23.1709-164.4456,57.06738-3.646,3.90332-7.04342,8.082-10.32922,12.124-4.85514,5.9707-9.87431,12.14355-15.86418,17.66406a74.56013,74.56013,0,0,1-10.47972,8.16895c-.257.17773-.5513.36816-.86246.54882-.712.46387-1.456.91114-2.18152,1.30957a75.7676,75.7676,0,0,1-13.36473,6.07618l-.46843.15722c-.3526.126-.73479.252-1.117.36719-2.68039.86035-5.46478,1.60449-8.25425,2.20605-12.06935,2.66016-25.79344,3.29786-40.78924,1.89356a197.11079,197.11079,0,0,1-40.55672-8.26465c-13.88644-4.38867-26.88421-9.86035-39.45413-15.15137-5.52143-2.32519-11.23226-4.72851-16.93549-7.00586-1.07215-.42871-2.12655-.84765-3.197-1.2666-6.96563-2.71484-13.281-4.957-19.30641-6.85449a190.55274,190.55274,0,0,0-46.008-8.52148c-16.588-.90821-31.2058.80468-43.4375,5.0791a74.59744,74.59744,0,0,0-9.82527,4.2334c-14.48763,7.52343-23.41915,18.62695-32.05558,29.36523-10.74354,13.35645-21.8532,27.16895-43.7901,34.3291-25.31318,8.26953-62.26194,4.834-88.40291-1.14062-8.21873-1.87891-16.42731-4.04-24.36617-6.13086q-4.80948-1.26709-9.62572-2.5166c-6.30948-1.62891-11.47324-2.877-16.25059-3.93067l-1.511-.33594c-.84048-.18261-1.6818-.36523-2.53834-.53906-5.67447-1.1914-10.95831-2.1289-16.16181-2.86621l-1.23112-.17969c-2.46815-.32519-4.77565-.5957-7.04-.82324l-.90389-.08984C231.56894,599.85448,226.9793,599.64355,222.38121,599.64355Z"
                         transform="translate(-163.65072 -154.90925)" fill="#f2f2f2" />
@@ -245,15 +245,20 @@
             </div>
             <div class="w-full">
                 <p class="text-gray-600 dark:text-gray-300 mt-5">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, voluptatum. Quisquam,
-                    voluptatum.
-                    Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. Quisquam,
-                    voluptatum.
+                    Glory Tower Investments is championed by Glory Excel Integrated Services (Geis)
+                    GEIS is your trusted partner in achieving your business, investment and financial goal.
                 </p>
                 <p class="text-gray-600 dark:text-gray-300 mt-5">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, voluptatum. Quisquam,
-                    voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.
-                    Quisquam, voluptatum.
+                    GEIS is a dynamic conglomerate with investments spanning from
+                    real estate to Agro Investments, we also offer financial services
+                    from Loans/Urgent Cash and savings.
+                </p>
+                <p class="text-gray-600 dark:text-gray-300 mt-5">
+                    We been have been in business for the last 9 years, we understand
+                    the challenges that has been faced by Nigerian due to the continuous
+                    decline In the stability of the economy, so it's our main priority
+                    to ensure that we make life more easier for Nigerians by coming up
+                    with platforms and packages that will improve the standards of living.
                 </p>
             </div>
         </div>
