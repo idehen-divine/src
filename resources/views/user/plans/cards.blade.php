@@ -9,14 +9,11 @@
                 <h2 class="text-xl font-semibold">Tier 1</h2>
                 <p class="text-2xl font-bold my-2">{{ settings()->getValue('app_currency_logo', '₦') }}500</p>
                 <ul class="text-left space-y-2 flex-grow">
-                    <li class="flex items-center"><span class="text-green-500">✔️</span> Lectus ut nibh quam, felis
-                        porttitor.</li>
-                    <li class="flex items-center"><span class="text-green-500">✔️</span> Ante nec venenatis etiam
-                        lacinia.</li>
-                    <li class="flex items-center"><span class="text-green-500">✔️</span> Porta suscipit netus ad ac.
-                    </li>
+                    <li class="flex items-center">Invest ₦500 Daily</li>
+                    <li class="flex items-center">Qualify for the weekly deep to win ₦100,000</li>
                 </ul>
-                <button class="btn bg-orange-500 hover:bg-orange-400 border-none text-white mt-4" wire:click="subscribe(1)">SUBSCRIBE</button>
+                <button class="btn bg-orange-500 hover:bg-orange-400 border-none text-white mt-4"
+                    wire:click="subscribe(1)">SUBSCRIBE</button>
             </div>
 
             <!-- Tier 2 Plan -->
@@ -27,14 +24,11 @@
                 <h2 class="text-xl font-semibold">Tier 2</h2>
                 <p class="text-2xl font-bold my-2">{{ settings()->getValue('app_currency_logo', '₦') }}1000</p>
                 <ul class="text-left space-y-2 flex-grow">
-                    <li class="flex items-center"><span class="text-green-500">✔️</span> Lectus ut nibh quam, felis
-                        porttitor.</li>
-                    <li class="flex items-center"><span class="text-green-500">✔️</span> Ante nec venenatis etiam
-                        lacinia.</li>
-                    <li class="flex items-center"><span class="text-green-500">✔️</span> Porta suscipit netus ad ac.
-                    </li>
+                    <li class="flex items-center">Invest ₦1000 Daily</li>
+                    <li class="flex items-center">Qualify for the weekly deep to win ₦200,000</li>
                 </ul>
-                <button class="btn bg-white hover:bg-gray-100 border-none text-orange-500 mt-4" wire:click="subscribe(2)">SUBSCRIBE</button>
+                <button class="btn bg-white hover:bg-gray-100 border-none text-orange-500 mt-4"
+                    wire:click="subscribe(2)">SUBSCRIBE</button>
             </div>
         </div>
     </section>
