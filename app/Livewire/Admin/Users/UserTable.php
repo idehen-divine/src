@@ -27,8 +27,15 @@ class UserTable extends Component
     public function wallet($id)
     {
         $this->user = User::find($id);
-        $this->balance = $this->user->wallet->balance;
-        $this->showWalletModal = true;
+        if ($this->user->wallet) {
+            $this->balance = $this->user->wallet->balance;
+            $this->showWalletModal = true;
+        } else {
+            $this->dispatch('notification', [
+                'message' => 'This user has not updated their profile.',
+                'type' => 'Error',
+            ]);
+        }
     }
 
     public function updateWallet()

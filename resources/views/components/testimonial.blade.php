@@ -1,4 +1,4 @@
-<section class="max-w-2xl mx-auto pb-10 mb-4">
+{{-- <section class="max-w-2xl mx-auto pb-10 mb-4">
     <div x-data="{
         currentIndex: 0,
         testimonials: [0, 1, 2],
@@ -54,4 +54,4 @@
             </button>
         </div>
     </div>
-</section>
+</section> --}}

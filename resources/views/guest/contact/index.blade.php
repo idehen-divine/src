@@ -2,11 +2,11 @@
     <section style="margin-top: 100px;">
         <h2 class="text-lg font-bold text-center">Contact Us</h2>
         <div class="w-24 h-1 bg-orange-500 mx-auto my-2"></div>
-        <p class="text-center text-gray-500 mb-8">Chat to our friendly team</p>
+        <p class="text-center text-gray-500 mb-8">Chat with our friendly team</p>
         <div class="container px-6 py-12 mx-auto">
             <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
                 <div class="gap-10">
-                    <p class="text-gray-500">We’d love to hear from you. Please fill out this form or shoot us an
+                    <p class="text-gray-500 mb-5">We’d love to hear from you. Please fill out this form or shoot us an
                         email.</p>
                     <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
                         <div>
