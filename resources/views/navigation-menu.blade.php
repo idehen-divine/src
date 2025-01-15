@@ -24,7 +24,10 @@
                             {{ __('Investments') }}
                         </x-nav-link>
                         <x-nav-link href="{{ route('transaction') }}" :active="$activePage === 'transaction'">
-                            Transactions @if($pendingTransactions)<span class="badge badge-error p-0 ms-1 h-4 w-4 text-white text-xs rounded-full">{{ $pendingTransactions }}</span>@endif
+                            Transactions @if ($pendingTransactions)
+                                <span
+                                    class="badge badge-error p-0 ms-1 h-4 w-4 text-white text-xs rounded-full">{{ $pendingTransactions }}</span>
+                            @endif
                         </x-nav-link>
                         <x-nav-link href="{{ route('settings') }}" :active="$activePage === 'settings'">
                             {{ __('Settings') }}
@@ -170,6 +173,20 @@
                     {{ __('Transactions') }}
                 </x-responsive-nav-link>
             @endif
+            <x-responsive-nav-link href="{{ route('profile.show') }}">
+                {{ __('Profile') }}
+            </x-responsive-nav-link>
+
+            <div class="border-t border-gray-200 dark:border-gray-600"></div>
+
+            <!-- Authentication -->
+            <form method="POST" action="{{ route('logout') }}" x-data>
+                @csrf
+
+                <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                    {{ __('Log Out') }}
+                </x-responsive-nav-link>
+            </form>
         </div>
 
         <!-- Responsive Settings Options -->
