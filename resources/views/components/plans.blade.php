@@ -11,7 +11,7 @@
                 <li class="flex items-center">Invest ₦500 Daily</li>
                 <li class="flex items-center">Qualify for the weekly deep to win ₦100,000</li>
             </ul>
-            <a href="{{ route('checkins') }}" {{ helpers()->isAdmin() ? 'disabled':'' }} class="btn bg-orange-500 hover:bg-orange-400 border-none text-white mt-10">INVEST</a>
+            <a href="{{ route('checkins') }}" {{ auth()->check() ? (helpers()->isAdmin() ? 'disabled':''): '' }} class="btn bg-orange-500 hover:bg-orange-400 border-none text-white mt-10">INVEST</a>
         </div>
 
         <!-- Tier 2 Plan -->
@@ -24,7 +24,7 @@
                 <li class="flex items-center">Invest ₦1000 Daily</li>
                 <li class="flex items-center">Qualify for the weekly deep to win ₦200,000</li>
             </ul>
-            <a href="{{ route('checkins') }}" {{ helpers()->isAdmin() ? 'disabled':'' }} class="btn bg-white hover:bg-gray-100 border-none text-orange-500 mt-10">INVEST</a>
+            <a href="{{ route('checkins') }}" {{ auth()->check() ? (helpers()->isAdmin() ? 'disabled':''): '' }} class="btn bg-white hover:bg-gray-100 border-none text-orange-500 mt-10">INVEST</a>
         </div>
     </div>
 </section>
