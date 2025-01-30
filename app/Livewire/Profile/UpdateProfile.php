@@ -56,8 +56,6 @@ class UpdateProfile extends Component
         $wallet = new Wallet();
         $wallet->user_id = auth()->user()->id;
         $wallet->save();
-        Paystack::customer()->create();
-        Paystack::account()->create();
 
         $this->dispatch('notification', [
             'message' => 'Profile updated successfully',
