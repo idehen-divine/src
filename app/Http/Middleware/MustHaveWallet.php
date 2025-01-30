@@ -32,7 +32,7 @@ class MustHaveWallet
         $user = auth()->user();
 
         if (!$user->wallet->account_number) {
-            return redirect()->route('wallet');
+            return redirect()->route('wallet')->withErrors(['wallet' => 'Please set up your wallet account first.']);
         }
 
         return $next($request);
