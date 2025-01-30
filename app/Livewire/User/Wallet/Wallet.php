@@ -2,10 +2,11 @@
 
 namespace App\Livewire\User\Wallet;
 
-use App\Models\Wallet as UserWallet;
 use Livewire\Component;
 use App\Services\Paystack;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Models\Wallet as UserWallet;
 use Illuminate\Support\Facades\Validator;
 
 class Wallet extends Component
@@ -118,6 +119,30 @@ class Wallet extends Component
         $this->boot();
     }
 
+    public function getVirtualAccount()
+    {
+        try {
+            Paystack::customer()->create();
+            Paystack::account()->create();
+            $this->boot();
+
+            $this->dispatch('notification', [
+                'message' => 'Virtual account created successfully.',
+                'type' => 'success',
+            ]);
+
+            $this->dispatch('refresh-page');
+        } catch (\Exception $th) {
+            DB::rollBack();
+            Log::error('Virtual Account Creation Error: ' . $th->getMessage());
+
+            $this->dispatch('notification', [
+                'message' => 'Unable to get virtual account at the moment, please try again later!',
+                'type' => 'error',
+            ]);
+        }
+    }
+
     public function boot()
     {
         $this->wallet = auth()->user()->wallet;
@@ -126,7 +151,7 @@ class Wallet extends Component
 
     public function mount()
     {
-        $this->banks = Paystack::bank()->all()['data'];
+        $this->banks = [];
     }
 
     public function render()

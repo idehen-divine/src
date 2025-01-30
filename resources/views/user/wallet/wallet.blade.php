@@ -8,24 +8,36 @@
                 <div class="flex justify-between">
                     <h3>Virtual Account</h3>
                     <button class="btn px-4 py-2 bg-orange-500 hover:bg-orange-400 btn-sm text-white float-right"
-                        wire:click="showingWithdrawalModal">
-                        Withdraw <i class="bx bx-wallet"></i>
+                        {{ $wallet->account_number ? '' : 'disabled' }} wire:click="showingWithdrawalModal"> Withdraw
+                        <i class="bx bx-wallet"></i>
                     </button>
                 </div>
-                <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
-                    {{ settings()->getValue('app_currency_logo') }} {{ $wallet->balance }}
-                </h3>
-                <p class="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">
-                    Account Number: {{ $wallet->account_number }}
-                </p>
-                <p class="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">
-                    Account Name: {{ $wallet->account_name }}
-                </p>
-                <p class="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">
-                    Bank: {{ $wallet->bank_name }}
-                </p>
+                @if ($wallet->account_number)
+                    <div>
+                        <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
+                            {{ settings()->getValue('app_currency_logo') }} {{ $wallet->balance }}
+                        </h3>
+                        <p class="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">
+                            Account Number: {{ $wallet->account_number }}
+                        </p>
+                        <p class="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">
+                            Account Name: {{ $wallet->account_name }}
+                        </p>
+                        <p class="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">
+                            Bank: {{ $wallet->bank_name }}
+                        </p>
+                    </div>
+                @else
+                    <div class="flex justify-center py-4">
+                        <button class="btn px-4 py-2 bg-orange-500 hover:bg-orange-400 text-white float-right"
+                            wire:click="getVirtualAccount">
+                            Get Virtual Account
+                        </button>
+                    </div>
+                @endif
             </div>
         </div>
+
         <div
             class="py-4 px-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg">
             <div>
@@ -59,7 +71,9 @@
             </x-slot>
 
             <x-slot name="content">
-                <select class="select select-bordered w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg" wire:model.live="bank_code">
+                <select
+                    class="select select-bordered w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg"
+                    wire:model.live="bank_code">
                     <option value="text-center">-- Bank --</option>
                     @unless ($banks === null)
                         @foreach ($banks as $bank)
@@ -68,11 +82,13 @@
                     @endunless
                 </select>
 
-                <input class="input input-bordered mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg" type="number"
-                    placeholder="Account Number" wire:model.live.debounce.300ms="account_number" />
+                <input
+                    class="input input-bordered mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg"
+                    type="number" placeholder="Account Number" wire:model.live.debounce.300ms="account_number" />
 
-                <input class="input input-bordered mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg" type="text" placeholder="Account Name"
-                    disabled wire:model="account_name" />
+                <input
+                    class="input input-bordered mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm rounded-lg"
+                    type="text" placeholder="Account Name" disabled wire:model="account_name" />
             </x-slot>
 
             <x-slot name="footer">
