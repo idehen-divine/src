@@ -13,9 +13,12 @@
 </div>
 
 @script
-<script>
-    $wire.on('redirect', (event) => {
-        window.location.href = event.url;
-    });
-</script>
+    <script>
+        $wire.on('redirect', (event) => {
+            window.location.href = event.url;
+        });
+        $wire.on('refresh-page', () => {
+            window.location.reload();
+        });
+    </script>
 @endscript
