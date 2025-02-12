@@ -74,7 +74,7 @@ class Wallet extends Component
         }
 
         $this->showModal = false;
-        $this->boot();
+        $this->dispatch('refresh-page');
         $this->dispatch('notification', [
             'message' => 'Local bank details updated successfully.',
             'type' => 'success',
@@ -151,7 +151,17 @@ class Wallet extends Component
 
     public function mount()
     {
-        $this->banks = [];
+        do {
+            $response = Paystack::bank()->all();
+
+            if (is_array($response) && isset($response['status']) && $response['status'] === true) {
+                $this->banks = $response['data'];
+                break;
+            }
+
+            sleep(2);
+
+        } while (true);
     }
 
     public function render()

@@ -34,7 +34,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'forceVerif
 
         Route::get('/dashboard', function () {
             return view('dashboard');
-        })->name('dashboard');
+        })->name('dashboard')->withoutMiddleware('mustHaveWallet');
 
         Route::controller(AdminController::class)->middleware('admin')->group(function () {
             Route::get('/users', 'getAllUsers')->name('users');
