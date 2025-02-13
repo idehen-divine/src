@@ -22,27 +22,31 @@ class Calender extends Component
         DB::beginTransaction();
 
         try {
-            DailyCheckin::checkin();
-            DailyCheckin::transaction();
-            if (!DailyCheckin::deduct()) {
+            if (!DailyCheckin::deduct()) { // Deduct first
                 DB::rollBack();
                 $this->dispatch('notification', [
                     'message' => 'Insufficient balance',
                     'type' => 'error',
                 ]);
-                return;
+                return; // Stop execution
             }
-            
-            if (Plan::getActivePlans()->currentDay() == 90) {
-                Plan::getActivePlans()->returnCapital();
-                Plan::getActivePlans()->returnInterest();
-                Plan::getActivePlans()->hasExpired();
+
+            DailyCheckin::checkin(); // Then check-in
+            DailyCheckin::transaction(); // Then record transaction
+
+            $activePlan = Plan::getActivePlans();
+            if ($activePlan->currentDay() == 90) {
+                $activePlan->returnCapital();
+                $activePlan->returnInterest();
+                $activePlan->hasExpired();
+
+                DB::commit();
+
                 $this->dispatch('notification', [
                     'message' => 'Congratulations, you\'ve completed day 90',
                     'type' => 'success',
                 ]);
 
-                DB::commit();
                 $this->dispatch('redirect', url: route('checkins'));
                 return;
             }
