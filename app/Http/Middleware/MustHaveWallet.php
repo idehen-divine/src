@@ -31,7 +31,7 @@ class MustHaveWallet
     {
         $user = auth()->user();
 
-        if (!$user->wallet->account_number) {
+        if (!$user->wallet->account_number && auth()->user()->role !== 'ADMIN') {
             return redirect()->route('wallet')->withErrors(['wallet' => 'Please set up your wallet account first.']);
         }
 
