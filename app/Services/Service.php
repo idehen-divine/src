@@ -14,9 +14,9 @@ trait Service
 
     protected function initPaystack(): void
     {
-        $this->paystackSecretKey = env('PAYSTACK_SECRET_KEY');
+        $this->paystackSecretKey = config('services.paystack.secret');
         $this->paystackBaseUrl = 'https://api.paystack.co';
-        $this->paystackEnvironment = env('PAYSTACK_ENVIRONMENT', 'test');
+        $this->paystackEnvironment = config('services.paystack.environment');
         $this->user = auth()->user();
     }
 
