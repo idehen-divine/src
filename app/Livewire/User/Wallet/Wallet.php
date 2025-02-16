@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Wallet as UserWallet;
 use Illuminate\Support\Facades\Validator;
+use GuzzleHttp\Exception\RequestException;
 
 class Wallet extends Component
 {
@@ -51,8 +52,20 @@ class Wallet extends Component
 
         if (strlen($this->account_number) === 10) {
             $this->bank_name = collect($this->banks)->firstWhere('code', $this->bank_code)['name'];
-            $accountDetails = Paystack::bank()->resolve($this->account_number, $this->bank_code)['data'];
-            $this->account_name = $accountDetails['account_name'];
+            try {
+                $accountDetails = Paystack::bank()->resolve($this->account_number, $this->bank_code)['data'];
+                $this->account_name = $accountDetails['account_name'];
+            } catch (RequestException $e) {
+                $this->dispatch('notification', [
+                    'message' => 'Network error! Please check your internet connection and try again.',
+                    'type' => 'error',
+                ]);
+            } catch (\Exception $e) {
+                $this->dispatch('notification', [
+                    'message' => 'Invalid account number or bank code',
+                    'type' => 'error',
+                ]);
+            }
         }
     }
 
@@ -132,6 +145,12 @@ class Wallet extends Component
             ]);
 
             $this->dispatch('refresh-page');
+        } catch (RequestException $e) {
+            $this->dispatch('notification', [
+                'message' => 'Network error! Please check your internet connection and try again.',
+                'type' => 'error',
+            ]);
+            
         } catch (\Exception $th) {
             DB::rollBack();
             Log::error('Virtual Account Creation Error: ' . $th->getMessage());
