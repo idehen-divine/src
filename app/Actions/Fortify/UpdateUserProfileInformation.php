@@ -21,7 +21,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         Validator::make($input, [
             'user_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
-            'middle_name' => ['required', 'string', 'max:255'],
+            'middle_name' => ['nullable', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
@@ -45,7 +45,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'phone' => $input['phone'],
             ])->save();
         }
-        
+
         Paystack::customer()->update();
     }
 
